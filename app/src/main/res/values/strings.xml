@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Chih诚美优选</string>
+
+    <string name="experience_now">立即体验</string>
+
+    <!--default-->
+    <string name="image_view">ImageView</string>
+    <string name="none">Chih诚美优选</string>
+
+    <!--notification-->
+    <string name="channel_critical">Critical events</string>
+    <string name="channel_importance">Importance events</string>
+    <string name="channel_default">Default events</string>
+    <string name="channel_low">Low events</string>
+    <string name="channel_media">Media events</string>
+    <string name="show">show</string>
+    <string name="disagree">不同意</string>
+    <string name="agree">同意</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

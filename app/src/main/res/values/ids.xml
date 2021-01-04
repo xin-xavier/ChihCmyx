@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="xavierDecorView" type="id" />
+    <item name="xavierAppbarLayout" type="id" />
+    <item name="xavierAppbarBg" type="id" />
+    <item name="xavierToolbarLayoutContent" type="id" />
+
+    <item name="xavierToolbarLayout" type="id" />
+    <item name="xavierReturnPager" type="id" />
+    <item name="xavierToolbarTitle" type="id" />
+    <item name="xavierNavMenu" type="id" />
+</resources>

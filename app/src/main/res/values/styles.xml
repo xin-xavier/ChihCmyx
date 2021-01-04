@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Splash-->
+    <style name="Splash" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@drawable/splash_welcome</item>
+    </style>
+
+    <style name="ButtonEliminatePaddingStyle">
+        <item name="android:padding">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!--Skin-->
+    <style name="SkinCompatTextAppearance.titleSelectColor" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/skin_title_select</item>
+    </style>
+
+    <style name="SkinCompatTextAppearance_titleUnSelectColor" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/skin_title_un_select</item>
+    </style>
+
+</resources>
