@@ -43,6 +43,9 @@ android 4.4以上沉浸式实现
  -dontwarn com.gyf.immersionbar.**
  `
 
+[**Java-WebSocket**](https://github.com/TooTallNate/Java-WebSocket)
+implementation 'org.java-websocket:Java-WebSocket:1.4.0'
+
 [LeakCanary](https://square.github.io/leakcanary/)
 LeakCanary是适用于Android的内存泄漏检测库。
 
