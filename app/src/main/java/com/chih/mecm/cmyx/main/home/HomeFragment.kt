@@ -144,7 +144,7 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
     }
 
     override fun showDefaultSearch(keyword: String) {
-        defaultSearch.hint=keyword
+        defaultSearch.hint = keyword
     }
 
     override fun showMessage(message: String?) {
@@ -161,7 +161,7 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
         var list: List<TopClazzResult>
     ) : FragmentStateAdapter(fragmentActivity) {
         override fun createFragment(position: Int): TopFragment =
-            TopFragment.newInstance(list.get(position).id.toString(), position.toString())
+            TopFragment.newInstance(list[position].name, list[position].id)
 
         override fun getItemCount(): Int = list.size
     }

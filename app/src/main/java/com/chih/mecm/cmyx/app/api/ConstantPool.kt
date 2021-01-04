@@ -13,5 +13,13 @@ interface ConstantPool {
         // tab
         const val LITTLE_SCALE = 1.1f
         const val BIG_SCALE = 1.4f
+
+        // broadcast
+        const val ACTION_CHAT_MESSAGE_RECEIVER =
+            "com.mecm.cmyx.broadcast.chat.message.receiver.action"
+        const val PARAM_CHAT_MESSAGE_RECEIVER = "param_chat_message_receiver"
+
+        // 心跳
+        const val PING = "PING"
     }
 }

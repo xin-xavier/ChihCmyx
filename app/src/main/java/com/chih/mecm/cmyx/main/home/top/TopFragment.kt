@@ -6,28 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chih.mecm.cmyx.R
+import com.chih.mecm.cmyx.base.fragment.SimpleFragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val TYPE = "type"
+private const val CLAZZ_ID = "clazz_id"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TopFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TopFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class TopFragment : SimpleFragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var type: String = ""
+    private var page: Int = 0
+
+    override fun getParameter() {
+        super.getParameter()
+        type = arguments!!.getString(TYPE,"")
+        page = arguments!!.getInt(CLAZZ_ID,0)
     }
 
     override fun onCreateView(
@@ -38,22 +30,17 @@ class TopFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_top, container, false)
     }
 
+    override fun ui() {
+
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TopFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(type: String, clazzId: Int) =
             TopFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(TYPE, type)
+                    putInt(CLAZZ_ID,clazzId)
                 }
             }
     }

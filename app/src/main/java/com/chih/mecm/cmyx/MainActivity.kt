@@ -1,26 +1,34 @@
 package com.chih.mecm.cmyx
 
+import android.content.*
 import android.os.Bundle
+import android.os.IBinder
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.chih.mecm.cmyx.app.AppManager
+import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.ACTION_CHAT_MESSAGE_RECEIVER
+import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.PARAM_CHAT_MESSAGE_RECEIVER
+import com.chih.mecm.cmyx.app.broadcast.ChatMessageReceiver
 import com.chih.mecm.cmyx.base.activity.SimpleActivity
-import com.chih.mecm.cmyx.bean.EmptyBean
 import com.chih.mecm.cmyx.bean.entity.TabEntity
 import com.chih.mecm.cmyx.bean.result.NewsChatResult
 import com.chih.mecm.cmyx.http.client.RetrofitHelper
 import com.chih.mecm.cmyx.http.observer.HttpDefaultObserver
 import com.chih.mecm.cmyx.main.home.HomeFragment
 import com.chih.mecm.cmyx.main.news.NewsFragment
+import com.chih.mecm.cmyx.main.news.chat.ChatSocketService
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.ArrayList
+import timber.log.Timber
+import java.util.*
+
 
 class MainActivity : SimpleActivity() {
 
@@ -38,6 +46,30 @@ class MainActivity : SimpleActivity() {
         R.drawable.tab_shopping_unselect,
         R.drawable.tab_mine_unselect
     )
+
+    private lateinit var service: ChatSocketService
+    private var bound: Boolean = false
+
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName?, serviceBinder: IBinder?) {
+            val binder = serviceBinder as ChatSocketService.ChatSocketBinder
+            service = binder.getService()
+            bound = true
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            bound = false
+        }
+    }
+
+    private val receiver = object : ChatMessageReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            intent?.let {
+                val stringExtra = it.getStringExtra(PARAM_CHAT_MESSAGE_RECEIVER)
+                Timber.i(stringExtra)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +120,34 @@ class MainActivity : SimpleActivity() {
 
         // 接口测试
         interfaceTest()
+
+        // 启动服务
+        val intent = Intent(this, ChatSocketService::class.java)
+        startService(intent)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // 绑定服务
+        Intent(this, ChatSocketService::class.java).also { intent ->
+            bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        }
+
+        // 绑定广播
+        val instance = LocalBroadcastManager.getInstance(this)
+        val intentFilter = IntentFilter(ACTION_CHAT_MESSAGE_RECEIVER)
+        instance.registerReceiver(receiver, intentFilter)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // 解绑服务
+        unbindService(connection)
+        bound = false
+
+        // 解绑广播
+        val instance = LocalBroadcastManager.getInstance(this)
+        instance.unregisterReceiver(receiver)
     }
 
     private fun interfaceTest() {
@@ -111,7 +171,8 @@ class MainActivity : SimpleActivity() {
             })
     }
 
-    private inner class TabsPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+    private inner class TabsPagerAdapter(fragmentActivity: FragmentActivity) :
+        FragmentStateAdapter(fragmentActivity) {
         override fun getItemCount(): Int = tabs.size
         override fun createFragment(position: Int): Fragment =
             when (position) {
