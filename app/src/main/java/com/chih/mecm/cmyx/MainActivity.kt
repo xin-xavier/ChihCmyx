@@ -66,7 +66,7 @@ class MainActivity : SimpleActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             intent?.let {
                 val stringExtra = it.getStringExtra(PARAM_CHAT_MESSAGE_RECEIVER)
-                Timber.i(stringExtra)
+                Timber.i("MainActivity#ChatMessageReceiver#onReceive stringExtra = $stringExtra")
             }
         }
     }
@@ -134,9 +134,7 @@ class MainActivity : SimpleActivity() {
         }
 
         // 绑定广播
-        val instance = LocalBroadcastManager.getInstance(this)
-        val intentFilter = IntentFilter(ACTION_CHAT_MESSAGE_RECEIVER)
-        instance.registerReceiver(receiver, intentFilter)
+        receiver.registerReceiver(this)
     }
 
     override fun onStop() {
@@ -146,29 +144,28 @@ class MainActivity : SimpleActivity() {
         bound = false
 
         // 解绑广播
-        val instance = LocalBroadcastManager.getInstance(this)
-        instance.unregisterReceiver(receiver)
+        receiver.unregisterReceiver(this)
     }
 
     private fun interfaceTest() {
-        RetrofitHelper.apiServer
-            .chatList(1)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : HttpDefaultObserver<NewsChatResult>() {
-                override fun disposable(d: Disposable) {
+        /* RetrofitHelper.apiServer
+             .chatList(1)
+             .subscribeOn(Schedulers.io())
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribe(object : HttpDefaultObserver<NewsChatResult>() {
+                 override fun disposable(d: Disposable) {
 
-                }
+                 }
 
-                override fun onSuccess(t: NewsChatResult) {
+                 override fun onSuccess(t: NewsChatResult) {
 
-                }
+                 }
 
-                override fun onError(errorMessage: String) {
+                 override fun onError(errorMessage: String) {
 
-                }
+                 }
 
-            })
+             })*/
     }
 
     private inner class TabsPagerAdapter(fragmentActivity: FragmentActivity) :

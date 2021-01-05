@@ -10,7 +10,7 @@ AndroidUtilCode 🔥 是一个强大易用的安卓工具类库
 [**BasePopup**](https://github.com/razerdp/BasePopup)
 BasePopup - Android下打造通用便捷的PopupWindow
 
-**BaseRecyclerViewAdapterHelper**  [](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)  [](https://www.jianshu.com/p/b343fcff51b0)
+**BaseRecyclerViewAdapterHelper**  [**github**](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)  [**简书**](https://www.jianshu.com/p/b343fcff51b0)
 强大而灵活的RecyclerView Adapter
 
 [**Banner**](https://github.com/youth5201314/banner)

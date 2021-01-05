@@ -6,7 +6,7 @@ import android.content.IntentFilter
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.chih.mecm.cmyx.app.api.ConstantPool
 
-abstract class ChatMessageReceiver(var isRegisterReceiver: Boolean = false) : BroadcastReceiver() {
+abstract class TachycardiaReceiver(var isRegisterReceiver: Boolean = false) : BroadcastReceiver() {
 
     fun registerReceiver(context: Context) {
         if (!isRegisterReceiver) {

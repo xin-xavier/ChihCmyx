@@ -21,5 +21,12 @@ interface ConstantPool {
 
         // 心跳
         const val PING = "PING"
+
+        const val EASY_FIXED_EXECUTOR_BUILDER_SIZE = 4
+        const val EASY_FIXED_EXECUTOR_BUILDER_NAME = "easy_fixed_executor_builder_name"
+        const val EASY_CACHED_EXECUTOR_BUILDER_NAME = "easy_cached_executor_builder_name"
+
+        // 当应用程序中的所有UI组件不可见是为 true
+        const val APP_UI_HIDDEN = "APP_UI_HIDDEN"
     }
 }

@@ -56,7 +56,7 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
         val pagerAdapter = TopPagerAdapter(this, list)
         viewPager.adapter = pagerAdapter
         val commonNavigator = CommonNavigator(context)
-        commonNavigator.isAdjustMode = false
+        //commonNavigator.isAdjustMode = false
         commonNavigator.adapter = object : CommonNavigatorAdapter() {
             @SuppressLint("InflateParams")
             override fun getTitleView(context: Context?, index: Int): IPagerTitleView {

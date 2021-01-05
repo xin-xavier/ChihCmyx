@@ -1,6 +1,8 @@
 package com.chih.mecm.cmyx.app
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.SPStaticUtils
@@ -16,6 +18,18 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 object AppManager {
+
+    @Volatile
+    private var isForeground: Boolean = true
+
+    @Synchronized
+    fun setForeground(boolean: Boolean) {
+        if(isForeground==boolean){
+            return
+        }
+        isForeground = boolean
+        // PING
+    }
 
     fun isLogin(): Boolean {
         //return PrefUtils.getBoolean(Constants.LOGIN, false)
@@ -38,7 +52,7 @@ object AppManager {
 
     // 用户协议弹窗
     fun userAgreement(context: Context) {
-        if(SPStaticUtils.getBoolean(USER_AGREEMENT)){
+        if (SPStaticUtils.getBoolean(USER_AGREEMENT)) {
             return
         }
         val popup = UserAgreementPopup(context)
@@ -55,7 +69,7 @@ object AppManager {
             .checkVersionUpdates(map)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : HttpSuccessObserver<EmptyBean>(){
+            .subscribe(object : HttpSuccessObserver<EmptyBean>() {
                 override fun onSuccess(t: EmptyBean) {
 
                 }

@@ -88,8 +88,17 @@ dependencies {
     // LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
 
+    // ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
     // MagicIndicator
     implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
+
+    // SwipeDelMenuLayout
+    implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+
+    // MultipleStatusView
+    implementation 'com.classic.common:multiple-status-view:1.7'
 
     // OkHttp3
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'

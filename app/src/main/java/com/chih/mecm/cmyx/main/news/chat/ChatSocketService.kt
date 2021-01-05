@@ -2,25 +2,27 @@ package com.chih.mecm.cmyx.main.news.chat
 
 import android.annotation.SuppressLint
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.*
-import androidx.annotation.NonNull
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.NetworkUtils
 import com.chih.mecm.cmyx.ChihApplication
-import com.chih.mecm.cmyx.app.AppManager
+import com.chih.mecm.cmyx.app.APixelActivity
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.ACTION_CHAT_MESSAGE_RECEIVER
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.PARAM_CHAT_MESSAGE_RECEIVER
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.PING
+import com.chih.mecm.cmyx.app.broadcast.ScreenLockReceiver
+import com.chih.mecm.cmyx.app.broadcast.TachycardiaReceiver
 import com.chih.mecm.cmyx.http.url.DNSConfig
 import io.reactivex.Observable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.internal.notify
-import okhttp3.internal.wait
 import org.java_websocket.handshake.ServerHandshake
 import java.net.URI
 import java.util.*
 import java.util.concurrent.TimeUnit
-
 
 class ChatSocketService : Service() {
 
@@ -29,70 +31,72 @@ class ChatSocketService : Service() {
     private val uri = URI.create(DNSConfig.WS_URL)
     private var client: ChatSocketClient? = null
 
+    @Volatile
+    private var reconnectionInterval = 0L
+
     // 4 分钟
     private var heartbeatInterval = 1000 * 60 * 4L
-    private val timer = Timer()
-    private val heartRunnable = object : TimerTask() {
-        override fun run() {
-            if (client == null) {
-                createSocketClient()
-            } else {
-                client?.let { client ->
-                    {
-                        if (client.isClosed) {
-                            if (AppManager.isLogin()) {
-                                reconnection()
-                            }
-                        } else if (client.isOpen) {
-                            sendMessage(PING)
-                        } else {
-                            connectBlocking()
+
+    private var disposable: Disposable? = null
+
+    private val screenLockReceiver = object : ScreenLockReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            intent?.let {
+                when (it.action) {
+                    Intent.ACTION_SCREEN_ON -> {
+                        val topActivity = ActivityUtils.getTopActivity()
+                        if (topActivity is APixelActivity) {
+                            topActivity.finishAffinity()
                         }
                     }
+                    Intent.ACTION_SCREEN_OFF -> {
+                        val aPixelIntent =
+                            Intent(this@ChatSocketService, APixelActivity::class.java)
+                        aPixelIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(aPixelIntent)
+                    }
+                    else -> {
+                    }
                 }
+                sendMessage(PING)
             }
         }
     }
 
-    private var reconnectionInterval = 0L
-    private var isLoop = false
-    private val what = 10
+    private val networkStatusChangedReceiver = object : NetworkUtils.OnNetworkStatusChangedListener {
+        override fun onDisconnected() {
+            sendMessage(PING)
+        }
 
-    @SuppressLint("HandlerLeak")
-    private val handler: Handler = object : Handler(Looper.getMainLooper()) {
-        override fun handleMessage(@NonNull msg: Message) {
-            super.handleMessage(msg)
-            if (msg.what == what) {
-                isLoop = client != null && client!!.isOpen
-            }
+        override fun onConnected(networkType: NetworkUtils.NetworkType?) {
+            sendMessage(PING)
         }
     }
 
-    private val thread = Thread {
-        while (isLoop) {
-            if (reconnectionInterval == 0L) {
-                reconnectionInterval = 250L
-            } else {
-                Thread.sleep(reconnectionInterval)
-                if (reconnectionInterval < 1000 * 64L) {
-                    reconnectionInterval *= 2L
-                }
-            }
-            val message = handler.obtainMessage()
-            message.what = what
-            handler.sendMessage(message)
+    private val tachycardiaReceiver=object : TachycardiaReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            sendMessage(PING)
         }
     }
 
     override fun onCreate() {
         super.onCreate()
         intent.action = ACTION_CHAT_MESSAGE_RECEIVER
+        screenLockReceiver.registerReceiver(this)
+        NetworkUtils.registerNetworkStatusChangedListener(networkStatusChangedReceiver)
+        tachycardiaReceiver.registerReceiver(this)
     }
 
+    @SuppressLint("CheckResult")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         createSocketClient()
         // 发送心跳
-        timer.schedule(heartRunnable, 1000, heartbeatInterval)
+        //timer.schedule(heartRunnable, 1000, heartbeatInterval)
+        disposable = Observable.interval(1000 * 3L, heartbeatInterval, TimeUnit.MILLISECONDS)
+            .subscribeOn(Schedulers.io())
+            .subscribe {
+                sendMessage(PING)
+            }
         //return super.onStartCommand(intent, flags, startId)
         // 如果此服务的进程在启动时被杀死 系统将尝试重新创建服务。
         return START_STICKY
@@ -136,28 +140,66 @@ class ChatSocketService : Service() {
     }
 
     @SuppressLint("CheckResult")
-    private fun connectBlocking() {
-        Observable.just(Any())
-            .subscribeOn(Schedulers.io())
-            .subscribe {
-                client?.connectBlocking()
+    private fun connectBlocking(connect: Boolean = true) {
+        ChihApplication.easyCachedExecutor.execute {
+            client?.connectBlocking()
+        }
+        ChihApplication.easyCachedExecutor.async(
+            {
+                if (connect) {
+                    client?.connectBlocking()
+                } else {
+                    client?.reconnectBlocking()
+                }
+            },
+            { boolean ->
+                if (boolean == true) {
+                    if (disposable == null || disposable!!.isDisposed) {
+                        disposable =
+                            Observable.interval(1000 * 3L, heartbeatInterval, TimeUnit.MILLISECONDS)
+                                .subscribeOn(Schedulers.io())
+                                .subscribe {
+                                    sendMessage(PING)
+                                }
+                    }
+                } else {
+                    //Thread.sleep(reconnectionInterval)
+                    upDataReconnectionInterval()
+                    ChihApplication.easyCachedExecutor.setDelay(reconnectionInterval)
+                        .execute {
+                            connectBlocking()
+                        }
+                }
             }
+        )
+    }
+
+    @Synchronized
+    private fun upDataReconnectionInterval() {
+        if (reconnectionInterval == 0L) {
+            reconnectionInterval = 250L
+        } else if (reconnectionInterval < 1000 * 64L) {
+            reconnectionInterval *= 2L
+        }
     }
 
     // 重连
     private fun reconnection() {
         // 先取消心跳包
-        timer.cancel()
-        thread.start()
+        disposable?.dispose()
+        connectBlocking(false)
     }
 
     private fun sendMessage(message: String) {
-        client?.let { it ->
-            if (it.isOpen) {
-                it.send(message)
-            } else {
-                client = null
-                createSocketClient()
+        if (client == null) {
+            createSocketClient()
+        } else {
+            client?.let {
+                if (it.isOpen) {
+                    it.send(message)
+                } else {
+                    reconnection()
+                }
             }
         }
     }
@@ -165,6 +207,10 @@ class ChatSocketService : Service() {
     private fun closeConnect() {
         client?.close()
         client = null
+        disposable?.dispose()
+        screenLockReceiver.unRegisterReceiver(this)
+        NetworkUtils.unregisterNetworkStatusChangedListener(networkStatusChangedReceiver)
+        tachycardiaReceiver.unregisterReceiver(this)
     }
 
     /**
@@ -179,6 +225,7 @@ class ChatSocketService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        closeConnect()
     }
 
     inner class ChatSocketBinder : Binder() {

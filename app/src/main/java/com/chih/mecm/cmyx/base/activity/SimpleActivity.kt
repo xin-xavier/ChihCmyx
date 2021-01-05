@@ -37,6 +37,11 @@ abstract class SimpleActivity : LifeCycleActivity(),
             .init() //通过上面配置后初始化后方可成功调用
     }
 
+    override fun onResume() {
+        super.onResume()
+        AppManager.setForeground(true)
+    }
+
     /**
      * @method 页面跳转
      * @param clazz clazz

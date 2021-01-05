@@ -1,14 +1,24 @@
 package com.chih.mecm.cmyx
 
+import android.app.Activity
 import android.app.Application
+import android.content.ComponentCallbacks2
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
+import android.os.Bundle
 import com.blankj.utilcode.util.SPStaticUtils
+import com.chih.mecm.cmyx.app.AppManager
+import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.EASY_CACHED_EXECUTOR_BUILDER_NAME
+import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.EASY_FIXED_EXECUTOR_BUILDER_NAME
+import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.EASY_FIXED_EXECUTOR_BUILDER_SIZE
 import com.chih.mecm.cmyx.app.api.ConstantTransmit.Companion.PUSH_STATUS
 import com.chih.mecm.cmyx.app.notification.NotificationChannels
+import com.chih.mecm.cmyx.utils.easy.EasyExecutor
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import timber.log.Timber
 
 class ChihApplication : Application() {
 
@@ -16,6 +26,19 @@ class ChihApplication : Application() {
         super.onCreate()
         instance = this
         appContext = applicationContext
+
+        Timber.plant(Timber.DebugTree())
+
+        // 创建一个可重用固定个数的线程池
+        easyFixedExecutor = EasyExecutor.newBuilder(EASY_FIXED_EXECUTOR_BUILDER_SIZE)
+            .setName(EASY_FIXED_EXECUTOR_BUILDER_NAME)
+            .setPriority(Thread.NORM_PRIORITY)
+            .build()
+        // 创建一个可缓存线程池
+        easyCachedExecutor = EasyExecutor.newBuilder(0)
+            .setName(EASY_CACHED_EXECUTOR_BUILDER_NAME)
+            .setPriority(Thread.NORM_PRIORITY)
+            .build()
 
         if (!SPStaticUtils.contains(PUSH_STATUS)) {
             SPStaticUtils.put(PUSH_STATUS, true)
@@ -37,12 +60,73 @@ class ChihApplication : Application() {
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ -> //指定为经典Footer，默认是 BallPulseFooter
             ClassicsFooter(context)
         }
+
+        registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+                Timber.d("onActivityCreated: Called")
+            }
+
+            override fun onActivityStarted(activity: Activity) {
+                Timber.d("onActivityStarted: Called")
+            }
+
+            override fun onActivityResumed(activity: Activity) {
+                Timber.d("onActivityResumed: Called")
+            }
+
+            override fun onActivityPaused(activity: Activity) {
+                Timber.d("onActivityPaused: Called")
+            }
+
+            override fun onActivityStopped(activity: Activity) {
+                Timber.d("onActivityStopped: Called")
+            }
+
+            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+                Timber.d("onActivitySaveInstanceState: Called")
+            }
+
+            override fun onActivityDestroyed(activity: Activity) {
+                Timber.d("onActivityDestroyed: Called")
+            }
+
+        })
+
+        registerComponentCallbacks(object : ComponentCallbacks2 {
+            override fun onConfigurationChanged(newConfig: Configuration) {
+                // 作用：监听 应用程序 配置信息的改变，如屏幕旋转等
+                Timber.i("onConfigurationChanged: Called")
+            }
+
+            override fun onLowMemory() {
+            }
+
+            override fun onTrimMemory(level: Int) {
+                // OnTrimMemory() 是 OnLowMemory() Android 4.0后的替代 API
+                // 4.0 以后直接使用 OnTrimMemory() 即可
+                // 作用：通知 应用程序 当前内存使用情况（以内存级别进行识别）
+                if (level == TRIM_MEMORY_UI_HIDDEN) {
+                    Timber.i( "onTrimMemory: 应用程序中的所有UI组件不可见了")
+                    AppManager.setForeground(false)
+                }
+                if (level >= TRIM_MEMORY_MODERATE) {
+                    Timber.i("onTrimMemory: 应该释放内存了")
+                }
+                Timber.i("onTrimMemory: 内存级别 \$level = $level")
+            }
+
+        })
+
     }
 
     companion object {
         lateinit var instance: ChihApplication
             private set
         lateinit var appContext: Context
+            private set
+        lateinit var easyFixedExecutor: EasyExecutor
+            private set
+        lateinit var easyCachedExecutor: EasyExecutor
             private set
     }
 

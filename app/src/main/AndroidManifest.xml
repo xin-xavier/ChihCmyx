@@ -7,9 +7,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 访问网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 访问WIFI状态 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 读取外部存储 -->
-    <uses-permission android:name="android.permission.VIBRATE" /> <!--震动-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!--前台服务-->
-
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".ChihApplication"
@@ -21,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ChihCmyx"
         tools:replace="android:theme">
+        <activity android:name=".app.APixelActivity"></activity>
         <activity
             android:name=".TemporaryActivity"
             android:screenOrientation="portrait" />
