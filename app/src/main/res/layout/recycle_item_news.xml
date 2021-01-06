@@ -8,6 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="78dp"
+        android:id="@+id/constraintLayout"
         android:paddingStart="12dp"
         android:paddingEnd="12dp">
 

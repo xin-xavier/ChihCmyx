@@ -23,11 +23,11 @@ data class NewsChatDataListItem(
     @SerializedName("id")
     val id: Int = 0,
     @SerializedName("mname")
-    val mname: String = "",
+    val mName: String = "",
     @SerializedName("type")
     val type: Int = 0,
     @SerializedName("mavatar")
-    val mavatar: String = ""
+    val mAvatar: String = ""
 )
 
 

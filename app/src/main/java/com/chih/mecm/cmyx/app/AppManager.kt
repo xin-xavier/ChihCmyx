@@ -1,11 +1,16 @@
 package com.chih.mecm.cmyx.app
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.SPStaticUtils
+import com.chih.mecm.cmyx.ChihApplication
+import com.chih.mecm.cmyx.app.api.ConstantPool
+import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.ACTION_TACHYCARDIA_RECEIVER
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.MODEL
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.VERSION
 import com.chih.mecm.cmyx.app.api.ConstantTransmit.Companion.USER_AGREEMENT
@@ -19,16 +24,25 @@ import io.reactivex.schedulers.Schedulers
 
 object AppManager {
 
-    @Volatile
     private var isForeground: Boolean = true
+    val intent = Intent()
 
-    @Synchronized
+    init {
+        intent.action = ACTION_TACHYCARDIA_RECEIVER
+    }
+
     fun setForeground(boolean: Boolean) {
-        if(isForeground==boolean){
+        if (isForeground == boolean) {
             return
         }
         isForeground = boolean
-        // PING
+        // 发送
+        LocalBroadcastManager.getInstance(ChihApplication.appContext)
+            .sendBroadcast(intent)
+    }
+
+    fun getForeground(): Boolean {
+        return isForeground
     }
 
     fun isLogin(): Boolean {

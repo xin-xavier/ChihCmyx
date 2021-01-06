@@ -5,3 +5,9 @@
     android:layout_height="1px"
     android:background="@color/transparent"
     tools:context=".app.APixelActivity" />
+<!--
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"-->
+<!--
+    android:layout_width="1px"
+    android:layout_height="1px"-->

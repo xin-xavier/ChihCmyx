@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.BitmapImageViewTarget
+import com.chih.mecm.cmyx.R
+import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.IMAGE_SIZE_MULTIPLIER
 
 object GlideEngine : ImageEngine {
 
@@ -17,6 +19,19 @@ object GlideEngine : ImageEngine {
     //
     ///////////////////////////////////////////////////////////////////////////
 
+    // 加载头像
+    fun loadHeadPortrait(context: Context, url: String?, imageView: ImageView) {
+        Glide.with(context)
+            .asBitmap() // 装换为 Bitmap
+            .centerCrop() // 中心作物
+            .sizeMultiplier(IMAGE_SIZE_MULTIPLIER)
+            //.diskCacheStrategy(DiskCacheStrategy.ALL)
+            .placeholder(R.drawable.default_avatar) //图片加载出来前显示的图片
+            .fallback(R.drawable.default_avatar) // url 为空的时候显示的图片
+            .error(R.drawable.default_avatar) // 图片加载失败后显示的图片
+            .load(url)
+            .into(imageView)
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     //

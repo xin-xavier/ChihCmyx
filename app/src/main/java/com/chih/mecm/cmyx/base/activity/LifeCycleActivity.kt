@@ -19,7 +19,7 @@ open class LifeCycleActivity : AppCompatActivity() {
         persistentState: PersistableBundle?
     ) {
         super.onCreate(savedInstanceState, persistentState)
-        Timber.d("onCreate: Called")
+        Timber.d("${this.javaClass.simpleName} onCreate: Called")
     }
 
     /**
@@ -28,7 +28,7 @@ open class LifeCycleActivity : AppCompatActivity() {
      */
     override fun onRestart() {
         super.onRestart()
-        Timber.d("onCreate: onRestart")
+        Timber.d("${this.javaClass.simpleName} onCreate: onRestart")
     }
 
     /**
@@ -37,7 +37,7 @@ open class LifeCycleActivity : AppCompatActivity() {
      */
     override fun onStart() {
         super.onStart()
-        Timber.d("onCreate: onStart")
+        Timber.d("${this.javaClass.simpleName} onCreate: onStart")
     }
 
     /**
@@ -46,7 +46,7 @@ open class LifeCycleActivity : AppCompatActivity() {
      */
     override fun onResume() {
         super.onResume()
-        Timber.d("onCreate: onResume")
+        Timber.d("${this.javaClass.simpleName} onCreate: onResume")
     }
 
     /**
@@ -57,7 +57,7 @@ open class LifeCycleActivity : AppCompatActivity() {
      */
     override fun onPause() {
         super.onPause()
-        Timber.d("onCreate: onPause")
+        Timber.d("${this.javaClass.simpleName} onCreate: onPause")
     }
 
     /**
@@ -67,7 +67,7 @@ open class LifeCycleActivity : AppCompatActivity() {
      */
     override fun onStop() {
         super.onStop()
-        Timber.d("onCreate: onStop")
+        Timber.d("${this.javaClass.simpleName} onCreate: onStop")
     }
 
     /**
@@ -76,7 +76,7 @@ open class LifeCycleActivity : AppCompatActivity() {
      */
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("onCreate: onDestroy")
+        Timber.d("${this.javaClass.simpleName} onCreate: onDestroy")
     }
 
 }

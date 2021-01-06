@@ -21,4 +21,137 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="delete">删除</string>
+    <string name="no_data">no_data</string>
+    <string name="to_login">去登录</string>
+    <string name="ticker_text">ticker_text</string>
+    <string name="notification_message">notification_message</string>
+    <string name="notification_title">notification_title</string>
+    <string name="long_text" >Android Developers
+平台
+Android Studio
+Google Play
+Jetpack
+Kotlin
+文档
+新闻
+搜索
+中文 – 简体
+在 Android 平台上构建任何应用
+搜索
+Google 致力于为黑人社区推动种族平等。查看具体举措。
+精选
+11 Weeks of Android
+关注我们，我们每周都会深入探索不同的 Android 主题，介绍不同领域（如界面、Android Jetpack 和机器学习）的新内容。
+查看时间表
+
+精选
+Android 11 即将发布！
+Beta 3 现已发布，这是我们正式发布 Android 11 之前的最后更新。现在是时候确保您的应用准备就绪了！获取进行兼容性测试所需的技术资源，并了解您可以围绕用户、控制权和隐私权打造的体验。
+获取技术资源
+Android 11 developer resources
+精选
+Android 11 交流会
+一系列全球性的在线社区交流会，讨论 Android 11 的新增功能以及现代 Android 开发的基本知识和最佳做法。
+查找交流会
+
+开始构建应用
+无论您是经验丰富的开发者，还是要打造您的首个 Android 应用，下面这些资源都可帮助您快速入门。
+
+
+Android Studio
+Android Studio 提供了能够针对各类 Android 设备以最快的速度开发应用的工具
+下载
+
+开发者指南
+查找培训课程，这些课程介绍了如何使用可在您的应用中重复使用的代码示例完成特定任务
+了解详情
+项目代码示例代码示例
+利用这些示例项目快速开始开发
+查看示例
+发布前测试应用测试应用
+在发布之前验证应用的行为和易用性
+了解如何测试
+应用设计和行为指南质量指南
+利用这些设计和行为指南打造高品质应用
+查看指南
+在 Google Play 上分发在 Google Play 上分发
+覆盖全球受众群体及赚取收入
+了解 PLAY
+开始使用
+文档
+素材设计
+Android 应用根据 Material Design 指南进行设计。这些指南提供了关于设计应用（从用户体验流程到视觉设计、动作、字体等）所需要了解的一切信息。
+针对 ANDROID 设计应用
+平台
+Wear OS
+Wear OS by Google smartwatches
+了解详情
+平台
+TV
+Android TV
+了解详情
+平台
+汽车
+Android for Cars
+了解详情
+平台
+Chrome 操作系统
+Chrome OS devices
+了解详情
+平台
+事物
+Android Things
+了解详情
+工具
+Android NDK
+Android NDK toolset
+了解详情
+文档
+适用于 Android 的 Google 服务
+借助一组 API，充分利用最新的 Google 技术。这些 API 由 Google 通过 Google Play 服务向全球的 Android 设备提供。
+
+首先设置 Google Play 服务库，然后使用 Google 地图、Firebase、Google Cast、Google AdMob 等服务的 API 构建应用。
+
+开始
+最新资讯
+无结果。
+更多资讯
+最新视频
+无结果。
+更多视频
+微信微信
+在微信上关注“Google Developers”
+TwitterTwitter
+在 Twitter 上关注 @AndroidDev
+YouTubeYouTube
+在 YouTube 上访问“Android Developers”频道
+关于 Android
+Android
+Enterprise
+安全
+源代码
+支持
+报告平台错误
+报告文档错误
+Google Play support
+参加调查研究
+文档
+开发者指南
+设计指南
+API 参考
+示例
+Android Studio
+Google Developers
+Android
+Chrome
+Firebase
+Google Cloud Platform
+所有产品
+隐私权政策
+许可
+品牌指南
+ICP证合字B2-20070004号
+通过电子邮件接收资讯和提示
+订阅
+中文 – 简体</string>
 </resources>

@@ -25,7 +25,7 @@ object NotificationChannels {
         mediaChannel.setSound(null, null)
         mediaChannel.vibrationPattern = null
         nm.createNotificationChannels(
-            Arrays.asList(
+            listOf(
                 NotificationChannel(
                     CRITICAL,
                     context.getString(R.string.channel_critical),

@@ -14,10 +14,15 @@ interface ConstantPool {
         const val LITTLE_SCALE = 1.1f
         const val BIG_SCALE = 1.4f
 
+        // Glide 图片默认压缩系数
+        const val IMAGE_SIZE_MULTIPLIER = 0.6F
+
         // broadcast
         const val ACTION_CHAT_MESSAGE_RECEIVER =
             "com.mecm.cmyx.broadcast.chat.message.receiver.action"
         const val PARAM_CHAT_MESSAGE_RECEIVER = "param_chat_message_receiver"
+        const val ACTION_TACHYCARDIA_RECEIVER =
+            "com.mecm.cmyx.broadcast.tachycardia.receiver.action"
 
         // 心跳
         const val PING = "PING"

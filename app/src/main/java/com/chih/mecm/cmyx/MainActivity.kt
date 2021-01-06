@@ -148,24 +148,22 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun interfaceTest() {
-        /* RetrofitHelper.apiServer
-             .chatList(1)
+         RetrofitHelper.apiServer
+             .subClazz(1)
              .subscribeOn(Schedulers.io())
              .observeOn(AndroidSchedulers.mainThread())
-             .subscribe(object : HttpDefaultObserver<NewsChatResult>() {
-                 override fun disposable(d: Disposable) {
-
-                 }
-
-                 override fun onSuccess(t: NewsChatResult) {
-
-                 }
-
-                 override fun onError(errorMessage: String) {
-
-                 }
-
-             })*/
+             .subscribe()
+        RetrofitHelper.apiServer
+            .homeChoiceShop()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+        val map = mapOf<String, Int>("cid" to 0, "pid" to 1, "page" to 1)
+        RetrofitHelper.apiServer
+            .clazzGoods(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
     }
 
     private inner class TabsPagerAdapter(fragmentActivity: FragmentActivity) :

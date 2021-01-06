@@ -13,14 +13,14 @@ open class ChatSocketClient(serverUri: URI?) : WebSocketClient(serverUri, Draft_
     }
 
     override fun onMessage(message: String?) {
-        Timber.d("onMessage: Called")
+        Timber.d("onMessage: Called $message")
     }
 
     override fun onClose(code: Int, reason: String?, remote: Boolean) {
-        Timber.d("onClose: Called")
+        Timber.w("onClose: Called reason = $reason --- remote = $remote")
     }
 
     override fun onError(ex: Exception?) {
-        Timber.d("onError: Called")
+        Timber.e(ex, "onError: Called")
     }
 }

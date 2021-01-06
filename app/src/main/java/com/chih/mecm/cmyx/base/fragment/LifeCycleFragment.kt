@@ -13,12 +13,12 @@ open class LifeCycleFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(con
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Timber.d("onAttach: Called")
+        Timber.d("${this.javaClass.simpleName} onAttach: Called")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.d("onCreate: Called")
+        Timber.d("${this.javaClass.simpleName} onCreate: Called")
     }
 
     override fun onCreateView(
@@ -26,48 +26,48 @@ open class LifeCycleFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(con
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Timber.d("onCreateView: Called")
+        Timber.d("${this.javaClass.simpleName} onCreateView: Called")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("onViewCreated: Called")
+        Timber.d("${this.javaClass.simpleName} onViewCreated: Called")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Timber.d("onActivityCreated: Called")
+        Timber.d("${this.javaClass.simpleName} onActivityCreated: Called")
     }
 
     override fun onStart() {
         super.onStart()
-        Timber.d("onStart: Called")
+        Timber.d("${this.javaClass.simpleName} onStart: Called")
     }
 
     override fun onResume() {
         super.onResume()
-        Timber.d("onResume: Called")
+        Timber.d("${this.javaClass.simpleName} onResume: Called")
     }
 
     override fun onPause() {
         super.onPause()
-        Timber.d("onPause: Called")
+        Timber.d("${this.javaClass.simpleName} onPause: Called")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Timber.d("onDestroyView: Called")
+        Timber.d("${this.javaClass.simpleName} onDestroyView: Called")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("onDestroy: Called")
+        Timber.d("${this.javaClass.simpleName} onDestroy: Called")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Timber.d("onDetach: Called")
+        Timber.d("${this.javaClass.simpleName} onDetach: Called")
     }
 
 }

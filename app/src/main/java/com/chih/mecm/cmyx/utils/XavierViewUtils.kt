@@ -1,6 +1,10 @@
 package com.chih.mecm.cmyx.utils
 
+import android.content.Context
 import android.view.View
+import com.chih.mecm.cmyx.R
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.constant.RefreshState
 
 object XavierViewUtils {
 
@@ -49,4 +53,22 @@ object XavierViewUtils {
     }
 
 
+    fun getDivide12View(context: Context?): View =
+        View.inflate(context, R.layout.divide_12_view, null)
+
+    fun getDivide24View(context: Context?): View =
+        View.inflate(context, R.layout.divide_24_view, null)
+
+
+    fun finishRefreshLayoutAnim(refreshLayout : SmartRefreshLayout?){
+        if(refreshLayout==null){
+            return
+        }
+        if(refreshLayout.state == RefreshState.Refreshing){
+            refreshLayout.finishRefresh()
+        }
+        if(refreshLayout.state == RefreshState.Loading){
+            refreshLayout.finishLoadMore()
+        }
+    }
 }

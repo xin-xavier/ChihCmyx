@@ -18,7 +18,7 @@ object DNSConfig {
     // URL
     ///////////////////////////////////////////////////////////////////////////
 
-    val WS_URL = ConstantUrl.WSS_URL
+    val WS_URL = if (ConstantUrl.DEBUG) ConstantUrl.DEBUG_WS_URL else ConstantUrl.WSS_URL
 
     // 隐私政策政策网址
     val PRIVACY_POLICY_URL = API_SERVER_BASE_URL + ConstantUrl.PRIVACY_POLICY

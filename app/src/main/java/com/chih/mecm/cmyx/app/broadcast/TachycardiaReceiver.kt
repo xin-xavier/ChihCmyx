@@ -12,7 +12,7 @@ abstract class TachycardiaReceiver(var isRegisterReceiver: Boolean = false) : Br
         if (!isRegisterReceiver) {
             isRegisterReceiver = true
             val instance = LocalBroadcastManager.getInstance(context)
-            val intentFilter = IntentFilter(ConstantPool.ACTION_CHAT_MESSAGE_RECEIVER)
+            val intentFilter = IntentFilter(ConstantPool.ACTION_TACHYCARDIA_RECEIVER)
             instance.registerReceiver(this, intentFilter)
         }
     }
@@ -23,6 +23,5 @@ abstract class TachycardiaReceiver(var isRegisterReceiver: Boolean = false) : Br
             instance.unregisterReceiver(this)
         }
     }
-
 
 }
