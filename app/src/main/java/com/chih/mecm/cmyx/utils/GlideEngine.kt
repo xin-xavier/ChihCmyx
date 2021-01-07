@@ -3,13 +3,16 @@ package com.chih.mecm.cmyx.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.IMAGE_SIZE_MULTIPLIER
+
 
 object GlideEngine : ImageEngine {
 
@@ -19,18 +22,81 @@ object GlideEngine : ImageEngine {
     //
     ///////////////////////////////////////////////////////////////////////////
 
+    // 加载指定占位图 默认 4dp 圆角的图片
+    fun assignResIdCircleCorner(context: Context?, url: String?, imageView: ImageView) {
+        context?.let {
+            val options = RequestOptions()
+            options.centerCrop()
+            Glide.with(it)
+                .asBitmap()
+                //.centerCrop()
+                //.sizeMultiplier(IMAGE_SIZE_MULTIPLIER)
+                .placeholder(R.drawable.default_banner) //图片加载出来前显示的图片
+                .fallback(R.drawable.default_banner) // url 为空的时候显示的图片
+                .error(R.drawable.default_banner) // 图片加载失败后显示的图片
+                .load(url)
+                .apply(options)
+                .into(imageView)
+            /*.into(object : BitmapImageViewTarget(imageView) {
+                override fun setResource(resource: Bitmap?) {
+                    //super.setResource(resource)
+                    val circularBitmapDrawable: RoundedBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(context.resources, resource)
+                    circularBitmapDrawable.cornerRadius = IMAGE_CORNER_RADIUS.dp()
+                    imageView.setImageDrawable(circularBitmapDrawable)
+                }
+            })*/
+        } ?: setImageResource(R.drawable.default_banner, imageView)
+    }
+
+    // 加载 BannerImage
+    fun loadBannerImage(context: Context?, url: String?, imageView: ImageView) {
+        context?.let {
+            val options = RequestOptions()
+            options.centerCrop()
+            Glide.with(it)
+                .asBitmap()
+                //.centerCrop()
+                //.sizeMultiplier(IMAGE_SIZE_MULTIPLIER)
+                .placeholder(R.drawable.default_banner) //图片加载出来前显示的图片
+                .fallback(R.drawable.default_banner) // url 为空的时候显示的图片
+                .error(R.drawable.default_banner) // 图片加载失败后显示的图片
+                .load(url)
+                .apply(options)
+                .into(imageView)
+                /*.into(object : BitmapImageViewTarget(imageView) {
+                    override fun setResource(resource: Bitmap?) {
+                        //super.setResource(resource)
+                        val circularBitmapDrawable: RoundedBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(context.resources, resource)
+                        circularBitmapDrawable.cornerRadius = IMAGE_CORNER_RADIUS.dp()
+                        imageView.setImageDrawable(circularBitmapDrawable)
+                    }
+                })*/
+        } ?: setImageResource(R.drawable.default_banner, imageView)
+    }
+
     // 加载头像
-    fun loadHeadPortrait(context: Context, url: String?, imageView: ImageView) {
-        Glide.with(context)
-            .asBitmap() // 装换为 Bitmap
-            .centerCrop() // 中心作物
-            .sizeMultiplier(IMAGE_SIZE_MULTIPLIER)
-            //.diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(R.drawable.default_avatar) //图片加载出来前显示的图片
-            .fallback(R.drawable.default_avatar) // url 为空的时候显示的图片
-            .error(R.drawable.default_avatar) // 图片加载失败后显示的图片
-            .load(url)
-            .into(imageView)
+    fun loadHeadPortrait(context: Context?, url: String?, imageView: ImageView) {
+        context?.let {
+            Glide.with(context)
+                .asBitmap() // 装换为 Bitmap
+                .centerCrop() // 中心作物
+                .sizeMultiplier(IMAGE_SIZE_MULTIPLIER)
+                .placeholder(R.drawable.default_avatar) //图片加载出来前显示的图片
+                .fallback(R.drawable.default_avatar) // url 为空的时候显示的图片
+                .error(R.drawable.default_avatar) // 图片加载失败后显示的图片
+                .load(url)
+                .into(imageView)
+        } ?: setImageResource(R.drawable.default_avatar, imageView)
+    }
+
+    private fun setImageResource(@DrawableRes resId: Int, imageView: ImageView) {
+        try {
+            imageView.setImageResource(resId)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////

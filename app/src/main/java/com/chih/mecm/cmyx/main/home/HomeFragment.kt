@@ -7,14 +7,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.blankj.utilcode.util.ToastUtils
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.BIG_SCALE
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.LITTLE_SCALE
 import com.chih.mecm.cmyx.base.fragment.BaseWithBarFragment
 import com.chih.mecm.cmyx.bean.result.TopClazzResult
+import com.chih.mecm.cmyx.extend.toast
+import com.chih.mecm.cmyx.main.home.top.TopContainerFragment
 import com.chih.mecm.cmyx.main.home.top.TopFragment
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
+import com.chih.mecm.cmyx.utils.XavierViewUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_searchbox_btn.*
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
@@ -29,6 +31,12 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
 
     override fun ui() {
         presenter?.topClazz()
+        refreshLayout.setOnRefreshListener {
+            presenter?.topClazz()
+            if (toolbarHelper.isPrepare) {
+                presenter?.getDefaultSearch()
+            }
+        }
     }
 
     override fun toolbarLayoutRes(): Int {
@@ -52,6 +60,7 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
     }
 
     override fun showTopClazz(list: List<TopClazzResult>) {
+        XavierViewUtils.finishRefreshLayoutAnim(refreshLayout)
         Timber.i(list.toString())
         val pagerAdapter = TopPagerAdapter(this, list)
         viewPager.adapter = pagerAdapter
@@ -144,11 +153,13 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
     }
 
     override fun showDefaultSearch(keyword: String) {
+        XavierViewUtils.finishRefreshLayoutAnim(refreshLayout)
         defaultSearch.hint = keyword
     }
 
     override fun showMessage(message: String?) {
-        ToastUtils.showShort(message)
+        XavierViewUtils.finishRefreshLayoutAnim(refreshLayout)
+        message.toast()
     }
 
     companion object {
@@ -161,8 +172,7 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
         var list: List<TopClazzResult>
     ) : FragmentStateAdapter(fragmentActivity) {
         override fun createFragment(position: Int): TopFragment =
-            TopFragment.newInstance(list[position].name, list[position].id)
-
+            TopContainerFragment.newInstance(list[position].name, list[position].id,position)
         override fun getItemCount(): Int = list.size
     }
 

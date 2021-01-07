@@ -8,6 +8,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.*
+import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.NetworkUtils
@@ -51,7 +52,6 @@ class ChatSocketService : Service() {
 
     private val screenLockReceiver = object : ScreenLockReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-
             intent?.let {
                 Timber.w(it.action)
                 when (it.action) {
@@ -161,8 +161,8 @@ class ChatSocketService : Service() {
 
             override fun onError(ex: Exception?) {
                 super.onError(ex)
-                client = null
-                createSocketClient()
+                //client = null
+                //createSocketClient()
             }
         }
         // 连接
@@ -173,6 +173,9 @@ class ChatSocketService : Service() {
     private var connectBlockingWhileCount = 0
 
     private fun connectBlocking(connect: Boolean = true) {
+        if (client == null || NetworkUtils.isConnected()) {
+            return
+        }
         ChihApplication.easyFixedExecutor.execute {
             Timber.d("connectBlockingCount 计数 ${connectBlockingCount++}")
             try {
@@ -239,6 +242,10 @@ class ChatSocketService : Service() {
     }
 
     private fun sendMessage(message: String) {
+        if (!NetworkUtils.isConnected()) {
+            Timber.w("sendMessage: 网络未连接")
+            return
+        }
         if (client == null) {
             createSocketClient()
         } else {

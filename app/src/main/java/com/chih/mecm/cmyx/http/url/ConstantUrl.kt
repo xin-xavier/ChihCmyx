@@ -2,8 +2,6 @@ package com.chih.mecm.cmyx.http.url
 
 interface ConstantUrl {
     companion object {
-        const val DEBUG = true
-
         const val DEBUG_API_BASE_URL = "https://api.chengmeiyoupin.com/"
         const val API_BASE_URL = "https://api.chengmeiyouxuan.com/"
 

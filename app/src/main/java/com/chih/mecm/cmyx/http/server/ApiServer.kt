@@ -4,6 +4,7 @@ import com.chih.mecm.cmyx.bean.BaseResult
 import com.chih.mecm.cmyx.bean.EmptyBean
 import com.chih.mecm.cmyx.bean.result.*
 import com.xavier.simple.demo.bean.result.ClazzGoodsResult
+import com.xavier.simple.demo.bean.result.HotResult
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -35,7 +36,7 @@ interface ApiServer {
     // 二级分类
     @POST("v3/home/subClass")
     @FormUrlEncoded
-    fun subClazz(@Field("pid") pid: Int): Observable<BaseResult<List<SlideShowResult>>>
+    fun subClazz(@Field("pid") pid: Int): Observable<BaseResult<List<SubClazzResult>>>
 
     // 精选店铺
     @POST("v3/home/choiceShop")
@@ -46,7 +47,10 @@ interface ApiServer {
     @FormUrlEncoded
     fun clazzGoods(@FieldMap map: Map<String, Int>): Observable<BaseResult<ClazzGoodsResult>>
 
-
+    // 热门推荐
+    @POST("v3/home/hot")
+    @FormUrlEncoded
+    fun hot(@Field("page") page: Int): Observable<BaseResult<HotResult>>
 
     // 聊天列表
     @POST("api/chat/list")

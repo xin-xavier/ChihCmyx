@@ -119,7 +119,7 @@ class MainActivity : SimpleActivity() {
         })
 
         // 接口测试
-        interfaceTest()
+        //interfaceTest()
 
         // 启动服务
         val intent = Intent(this, ChatSocketService::class.java)

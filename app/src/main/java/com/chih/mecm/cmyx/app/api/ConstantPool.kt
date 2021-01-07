@@ -1,9 +1,20 @@
 package com.chih.mecm.cmyx.app.api
 
+import com.chih.mecm.cmyx.extend.dp
+
 interface ConstantPool {
     companion object {
+        const val DEBUG = true
+
         // OkHttp 缓存路径
-        const val OK_CACHE_DIR = "cacheDir"
+        const val OK_CACHE_DIR = "cache_dir"
+
+        // RxCache 缓存路径
+        const val RX_CACHE_DIR = "rx_cache_dir"
+
+        // RxCache 缓存 TOP_CLAZZ 字符串缓存
+        const val RX_CACHE_TOP_CLAZZ_DIR = "rx_cache_top_clazz_dir"
+
 
         const val MODEL = "model"
         const val VERSION = "version"
@@ -16,6 +27,7 @@ interface ConstantPool {
 
         // Glide 图片默认压缩系数
         const val IMAGE_SIZE_MULTIPLIER = 0.6F
+        const val IMAGE_CORNER_RADIUS = 4f
 
         // broadcast
         const val ACTION_CHAT_MESSAGE_RECEIVER =
