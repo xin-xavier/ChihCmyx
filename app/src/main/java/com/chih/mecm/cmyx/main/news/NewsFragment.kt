@@ -3,6 +3,7 @@ package com.chih.mecm.cmyx.main.news
 import android.content.Intent
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -15,9 +16,13 @@ import com.chih.mecm.cmyx.base.fragment.BaseDecorViewFragment
 import com.chih.mecm.cmyx.bean.result.NewsChatDataListItem
 import com.chih.mecm.cmyx.bean.result.NewsChatResult
 import com.chih.mecm.cmyx.extend.toast
+import com.chih.mecm.cmyx.popup.NavPopup
 import com.chih.mecm.cmyx.utils.GlideEngine
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
+import com.chih.mecm.cmyx.utils.XavierTimeUtils
 import com.chih.mecm.cmyx.utils.XavierViewUtils
+import com.classic.common.MultipleStatusView.STATUS_CONTENT
+import com.classic.common.MultipleStatusView.STATUS_EMPTY
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_multip_news.*
@@ -42,16 +47,18 @@ class NewsFragment : BaseDecorViewFragment<NewsContract.Presenter<NewsContract.V
     }
 
     override fun ui() {
-        presenter?.chatList(page)
         multipleStatusLayout.showLoading()
+        presenter?.chatList(page)
         recyclerView.background =
-            MaterialShapeDrawableUtils.getRoundedShapeDrawable(4f, R.color.white)
+            MaterialShapeDrawableUtils.getShapeDrawable(4f, R.color.white)
         refreshLayout.setOnRefreshListener(onRefreshListener)
         refreshLayout.setOnLoadMoreListener {
             if (total > list.size) {
                 page++
+                presenter?.chatList(page)
+            } else {
+                refreshLayout.finishLoadMore(1500, true, true)
             }
-            presenter?.chatList(page)
         }
     }
 
@@ -64,9 +71,6 @@ class NewsFragment : BaseDecorViewFragment<NewsContract.Presenter<NewsContract.V
         if (!dataList.isNullOrEmpty()) {
             list.addAll(dataList)
         }
-        if (list.isEmpty()) {
-            showMessage(EMPTY)
-        }
         if (adapter == null) {
             adapter = NewsAdapter(list)
             adapter?.addHeaderView(XavierViewUtils.getDivide12View(context))
@@ -75,19 +79,24 @@ class NewsFragment : BaseDecorViewFragment<NewsContract.Presenter<NewsContract.V
         } else {
             adapter?.notifyDataSetChanged()
         }
-
     }
 
     override fun showMessage(message: String?) {
+        if (list.isEmpty() && multipleStatusLayout.viewStatus != STATUS_EMPTY) {
+            multipleStatusLayout.showEmpty()
+        } else if (list.isNotEmpty() && multipleStatusLayout.viewStatus != STATUS_CONTENT) {
+            multipleStatusLayout.showContent()
+        }
+        multipleStatusLayout.viewStatus
         multipleStatusLayout.showEmpty()
-        message.toast()
         XavierViewUtils.finishRefreshLayoutAnim(emptyRefreshLayout)
         XavierViewUtils.finishRefreshLayoutAnim(refreshLayout)
+        message.toast()
         emptyImageView.setImageResource(R.drawable.empty_news)
         emptyTextView.text = "亲~暂时还没有消息呦~"
         toLogin.visibility = if (AppManager.isLogin()) View.GONE else View.VISIBLE
         toLogin.background =
-            MaterialShapeDrawableUtils.getRoundedShapeDrawable(18f, R.color.grey_900_alpha_100)
+            MaterialShapeDrawableUtils.getShapeDrawable(18f, R.color.grey_900_alpha_100)
         emptyRefreshLayout.setOnRefreshListener(onRefreshListener)
     }
 
@@ -113,19 +122,25 @@ class NewsFragment : BaseDecorViewFragment<NewsContract.Presenter<NewsContract.V
     inner class NewsAdapter(data: MutableList<NewsChatDataListItem>?) :
         BaseQuickAdapter<NewsChatDataListItem, BaseViewHolder>(R.layout.recycle_item_news, data) {
         override fun convert(holder: BaseViewHolder, item: NewsChatDataListItem) {
-            val position = holder.layoutPosition
+            val type = item.type
+            val official = type != 1
+            val unread = item.unread
             GlideEngine.loadHeadPortrait(context, item.mAvatar, holder.getView(R.id.headPortrait))
             holder.setText(R.id.newsName, item.mName)
+                .setText(R.id.lastTime, XavierTimeUtils.getTimeSegmentation(item.sendTime))
+                .setVisible(R.id.officialLabel, official)
+                .setVisible(R.id.unreadNumber, unread > 0)
+                .setText(R.id.lastNews, item.lastMessage)
+                .setText(R.id.unreadNumber, unread.toString())
             val constraintLayout = holder.getView<ConstraintLayout>(R.id.constraintLayout)
             constraintLayout.setOnClickListener {
                 val aPixelIntent =
                     Intent(context, APixelActivity::class.java)
                 aPixelIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(aPixelIntent)
-                "Called".toast()
+                item.mName.toast()
             }
         }
-
     }
 
 }

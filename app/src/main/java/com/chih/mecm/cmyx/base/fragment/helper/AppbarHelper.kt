@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
-import com.blankj.utilcode.util.ToastUtils
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.base.fragment.SimpleFragment
 import com.chih.mecm.cmyx.base.presentation.OnPrepareListener
+import com.chih.mecm.cmyx.popup.NavPopup
 
 class AppbarHelper(@LayoutRes override var contentLayoutId: Int = 0, onPrepare: OnPrepareListener) :
     SimpleFragment(contentLayoutId) {
@@ -22,11 +22,23 @@ class AppbarHelper(@LayoutRes override var contentLayoutId: Int = 0, onPrepare: 
         }
         if (contentLayoutId != 0) {
             when (contentLayoutId) {
-                R.layout.xavier_default_toobar_view -> {
+                R.layout.xavier_toolbar_default_view -> {
                     val returnPager = view.findViewById<ImageView>(R.id.xavierReturnPager)
                     val navMenu = view.findViewById<ImageView>(R.id.xavierNavMenu)
                     returnPager.setOnClickListener { activity?.finish() }
-                    navMenu.setOnClickListener { ToastUtils.showShort("Chih诚美优选") }
+                    navMenu.setOnClickListener { v ->
+                        val navPopup = NavPopup(context)
+                        navPopup.showPopupWindow(v)
+                    }
+                }
+                R.layout.xavier_toolbar_reture_search_menu_tabs -> {
+                    val returnPager = view.findViewById<ImageView>(R.id.xavierReturnPager)
+                    val navMenu = view.findViewById<ImageView>(R.id.xavierNavMenu)
+                    returnPager.setOnClickListener { activity?.finish() }
+                    navMenu.setOnClickListener { v ->
+                        val navPopup = NavPopup(context)
+                        navPopup.showPopupWindow(v)
+                    }
                 }
             }
         }

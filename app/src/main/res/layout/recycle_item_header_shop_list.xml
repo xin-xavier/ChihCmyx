@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/white">
+
+    <!--19 + 12 + 12 = 43-->
+    <View
+        android:id="@+id/checkClickableView"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <CheckBox
+        android:id="@+id/check"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:background="@drawable/selector_check_box"
+        android:button="@null"
+        android:checked="false"
+        android:clickable="false"
+        android:enabled="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/checkClickableView"
+        app:layout_constraintEnd_toEndOf="@id/checkClickableView"
+        app:layout_constraintStart_toStartOf="@id/checkClickableView"
+        app:layout_constraintTop_toTopOf="@id/checkClickableView"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/storeIcon"
+        android:layout_width="13.5dp"
+        android:layout_height="12.5dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/image_view"
+        android:src="@mipmap/ic_store"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/check"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/shopName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="@color/textColor"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/status"
+        app:layout_constraintStart_toEndOf="@id/storeIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/tools_none" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/main_orange"
+        android:textSize="11sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/shopName"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SmallSp"
+        tools:text="@string/tools_none" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,16 +6,17 @@
     android:layout_height="78dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="78dp"
-        android:id="@+id/constraintLayout"
         android:paddingStart="12dp"
         android:paddingEnd="12dp">
 
-        <com.chih.mecm.cmyx.widget.CircleImageView
+        <ImageView
             android:id="@+id/headPortrait"
             android:layout_width="49dp"
             android:layout_height="49dp"
+            android:src="@drawable/default_avatar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -61,30 +62,28 @@
             android:layout_height="13dp"
             android:layout_marginStart="12dp"
             android:gravity="center"
-            android:text="@string/none"
+            android:text="@string/official"
+            android:background="@drawable/shape_stroke_corners4"
             android:textAlignment="center"
             android:textColor="@color/main_orange"
             android:textSize="10sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/newsName"
             app:layout_constraintStart_toEndOf="@+id/newsName"
             app:layout_constraintTop_toTopOf="@+id/newsName"
             tools:ignore="SmallSp"
-            tools:text="@string/none" />
+            tools:text="@string/official"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/unreadNumber"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:gravity="center"
+            style="@style/UnreadTextViewStyle"
             android:text="@string/none"
-            android:textAlignment="center"
-            android:textColor="#ffffffff"
-            android:textSize="10sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/lastNews"
             app:layout_constraintEnd_toEndOf="@+id/lastTime"
-            tools:background="@android:color/holo_red_dark"
             tools:ignore="SmallSp"
-            tools:text="@string/none" />
+            tools:text="3"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

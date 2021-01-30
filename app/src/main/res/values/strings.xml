@@ -7,6 +7,7 @@
     <!--default-->
     <string name="image_view">ImageView</string>
     <string name="none">Chih诚美优选</string>
+    <string name="tools_none">Chih诚美优选</string>
 
     <!--notification-->
     <string name="channel_critical">Critical events</string>
@@ -26,7 +27,7 @@
     <string name="ticker_text">ticker_text</string>
     <string name="notification_message">notification_message</string>
     <string name="notification_title">notification_title</string>
-    <string name="long_text" >Android Developers
+    <string name="long_text">Android Developers
 平台
 Android Studio
 Google Play
@@ -154,4 +155,9 @@ ICP证合字B2-20070004号
 通过电子邮件接收资讯和提示
 订阅
 中文 – 简体</string>
+    <string name="home_page">首页</string>
+    <string name="news">消息</string>
+    <string name="shopping">购物车</string>
+    <string name="mine">我的</string>
+    <string name="official">官方</string>
 </resources>

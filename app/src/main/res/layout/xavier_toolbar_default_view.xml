@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/xavierToolbarLayout"
     android:layout_width="match_parent"
     android:layout_height="40dp">
@@ -39,5 +40,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@id/xavierUnreadNumber"
+        style="@style/UnreadTextViewStyle"
+        android:layout_marginTop="4dp"
+        android:text="@string/none"
+        app:layout_constraintEnd_toEndOf="@id/xavierNavMenu"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toStartOf="@id/xavierNavMenu"
+        app:layout_constraintTop_toTopOf="@id/xavierNavMenu"
+        tools:ignore="SmallSp"
+        tools:text="3"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.LITTLE_SCALE
 import com.chih.mecm.cmyx.base.fragment.BaseWithBarFragment
 import com.chih.mecm.cmyx.bean.result.TopClazzResult
 import com.chih.mecm.cmyx.extend.toast
+import com.chih.mecm.cmyx.extend.value
 import com.chih.mecm.cmyx.main.home.top.TopContainerFragment
 import com.chih.mecm.cmyx.main.home.top.TopFragment
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
@@ -56,7 +57,7 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
         presenter?.getDefaultSearch()
         rootView?.findViewById<ImageView>(R.id.xavierAppbarBg)?.setImageResource(R.color.initial)
         searchBoxView.background =
-            MaterialShapeDrawableUtils.getRoundedShapeDrawable(2f, R.color.white)
+            MaterialShapeDrawableUtils.getShapeDrawable(2f, R.color.white)
     }
 
     override fun showTopClazz(list: List<TopClazzResult>) {
@@ -80,18 +81,12 @@ class HomeFragment : BaseWithBarFragment<HomeContract.Presenter<HomeContract.Vie
                     object : CommonPagerTitleView.OnPagerTitleChangeListener {
 
                         override fun onSelected(index: Int, totalCount: Int) {
-                            title.setTextAppearance(
-                                context,
-                                R.style.SkinCompatTextAppearance_titleSelectColor
-                            )
+                            title.setTextColor(R.color.skin_home_top_title_select.value())
                             indicator.visibility = View.VISIBLE
                         }
 
                         override fun onDeselected(index: Int, totalCount: Int) {
-                            title.setTextAppearance(
-                                context,
-                                R.style.SkinCompatTextAppearance_titleUnSelectColor
-                            )
+                            title.setTextColor(R.color.skin_home_top_title_un_select.value())
                             indicator.visibility = View.GONE
                         }
 

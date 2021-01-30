@@ -28,14 +28,14 @@ class LollipopFixedWebView : WebView {
         getFixedContext(context), attrs, defStyleAttr, defStyleRes
     )
 
-    /*constructor(
+    constructor(
         context: Context,
         attrs: AttributeSet?,
         defStyleAttr: Int,
         privateBrowsing: Boolean
     ) : super(
         getFixedContext(context), attrs, defStyleAttr, privateBrowsing
-    )*/
+    )
 
     companion object {
         private fun getFixedContext(context: Context): Context {

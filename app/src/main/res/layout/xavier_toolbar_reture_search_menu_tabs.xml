@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/xavierToolbarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/transparent">
+
+    <View
+        android:id="@id/xavierToolbarBgView"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@id/xavierReturnPager"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/image_view"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/return_pager"
+        app:layout_constraintBottom_toBottomOf="@id/xavierToolbarBgView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@id/xavierNavMenu"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/image_view"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/nav_menu"
+        app:layout_constraintBottom_toBottomOf="@id/xavierToolbarBgView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@id/xavierUnreadNumber"
+        style="@style/UnreadTextViewStyle"
+        android:layout_marginTop="4dp"
+        android:text="@string/none"
+        app:layout_constraintEnd_toEndOf="@id/xavierNavMenu"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toStartOf="@id/xavierNavMenu"
+        app:layout_constraintTop_toTopOf="@id/xavierNavMenu"
+        tools:ignore="SmallSp"
+        tools:text="3"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@id/xavierSearchBoxBgView"
+        android:layout_width="0dp"
+        android:layout_height="33dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/xavierToolbarBgView"
+        app:layout_constraintEnd_toStartOf="@id/xavierNavMenu"
+        app:layout_constraintStart_toEndOf="@id/xavierReturnPager"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@id/xavierSearchIcon"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="12dp"
+        android:contentDescription="@string/image_view"
+        android:src="@drawable/icon_search"
+        app:layout_constraintBottom_toBottomOf="@id/xavierSearchBoxBgView"
+        app:layout_constraintStart_toStartOf="@id/xavierSearchBoxBgView"
+        app:layout_constraintTop_toTopOf="@id/xavierSearchBoxBgView" />
+
+    <EditText
+        android:id="@id/xavierSearchBoxEditText"
+        android:layout_width="0dp"
+        android:layout_height="33dp"
+        android:autofillHints="@string/none"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:hint="@string/none"
+        android:inputType="text"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/xavierSearchBoxBgView"
+        app:layout_constraintEnd_toEndOf="@id/xavierSearchBoxBgView"
+        app:layout_constraintStart_toEndOf="@id/xavierSearchIcon"
+        app:layout_constraintTop_toTopOf="@id/xavierSearchBoxBgView" />
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@id/xavierTabLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/xavierToolbarBgView"
+        app:tl_iconVisible="false"
+        app:tl_indicator_color="@color/main_orange"
+        app:tl_indicator_corner_radius="2dp"
+        app:tl_indicator_height="2dp"
+        app:tl_indicator_width="50dp"
+        app:tl_textSelectColor="@color/main_orange"
+        app:tl_textUnselectColor="@color/textColor"
+        app:tl_textsize="15sp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

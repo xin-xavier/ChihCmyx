@@ -3,10 +3,11 @@ package com.chih.mecm.cmyx.http.server
 import com.chih.mecm.cmyx.bean.BaseResult
 import com.chih.mecm.cmyx.bean.EmptyBean
 import com.chih.mecm.cmyx.bean.result.*
-import com.xavier.simple.demo.bean.result.ClazzGoodsResult
-import com.xavier.simple.demo.bean.result.HotResult
 import io.reactivex.Observable
-import retrofit2.http.*
+import retrofit2.http.Field
+import retrofit2.http.FieldMap
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
 
 interface ApiServer {
@@ -25,13 +26,13 @@ interface ApiServer {
     fun getDefaultSearch(): Observable<BaseResult<String>>
 
     //  首页轮播图
-    @POST("v3/home/slideShow")
+    @POST("v5/home/slideShow")
     @FormUrlEncoded
-    fun slideShow(@Field("pid") pid: Int): Observable<BaseResult<List<SlideShowResult>>>
+    fun slideShow(@Field("pid") pid: Int): Observable<BaseResult<SlideShowResult>>
 
     // 首页广告
-    @POST("v3/home/ad")
-    fun homeAd(): Observable<BaseResult<List<HomeAdResult>>>
+    @POST("v5/home/ad")
+    fun homeAd(): Observable<BaseResult<HomeAdResult>>
 
     // 二级分类
     @POST("v3/home/subClass")
@@ -50,7 +51,12 @@ interface ApiServer {
     // 热门推荐
     @POST("v3/home/hot")
     @FormUrlEncoded
-    fun hot(@Field("page") page: Int): Observable<BaseResult<HotResult>>
+    fun hot(@Field("page") page: Int): Observable<BaseResult<CommodityResult>>
+
+    // 热门推荐
+    @POST("v3/home/classGoods")
+    @FormUrlEncoded
+    fun subGoods(@FieldMap map: Map<String, Int>): Observable<BaseResult<CommodityResult>>
 
     // 聊天列表
     @POST("api/chat/list")
@@ -60,5 +66,15 @@ interface ApiServer {
     @POST("v3/goods/details")
     @FormUrlEncoded
     fun details(@Field("gid") gid: Int): Observable<BaseResult<EmptyBean>>
+
+    // 订单列表
+    @POST("api/v4/order/orderInfo")
+    @FormUrlEncoded
+    fun orderList(@FieldMap map: Map<String, Int>): Observable<BaseResult<List<OrderListResult>>>
+
+    // 为你推荐
+    @POST("v3/home/recommend")
+    @FormUrlEncoded
+    fun recommendGoods(@Field("page") page: Int): Observable<BaseResult<CommodityResult>>
 
 }

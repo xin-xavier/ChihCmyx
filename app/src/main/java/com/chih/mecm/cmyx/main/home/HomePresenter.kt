@@ -1,13 +1,11 @@
 package com.chih.mecm.cmyx.main.home
 
 import android.annotation.SuppressLint
-import android.app.Application
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ResourceUtils
 import com.chih.mecm.cmyx.ChihApplication
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.RX_CACHE_TOP_CLAZZ_DIR
 import com.chih.mecm.cmyx.base.presenter.BasePresenter
-import com.chih.mecm.cmyx.bean.BaseResult
 import com.chih.mecm.cmyx.bean.result.TopClazzResult
 import com.chih.mecm.cmyx.http.client.RetrofitHelper
 import com.chih.mecm.cmyx.http.observer.BusinessHttpException
@@ -15,15 +13,13 @@ import com.chih.mecm.cmyx.http.observer.HttpDefaultObserver
 import com.chih.mecm.cmyx.http.observer.HttpSuccessObserver
 import com.lei.lib.java.rxcache.RxCache
 import com.lei.lib.java.rxcache.entity.CacheResponse
-import com.xavier.simple.demo.bean.result.ResultTopClazz
+import com.chih.mecm.cmyx.bean.result.ResultTopClazz
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import java.lang.ClassCastException
-import java.lang.Exception
-import java.util.*
 
 class HomePresenter(view: HomeContract.View) : BasePresenter<HomeContract.View>(view),
     HomeContract.Presenter<HomeContract.View> {

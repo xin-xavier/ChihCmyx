@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navFrameLayout"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/edgeView"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/shape_edge_top" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/newsIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="14.5dp"
+            android:contentDescription="@string/image_view"
+            android:src="@drawable/tab_news_unselect"
+            app:layout_constraintBottom_toBottomOf="@+id/newsText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/newsText" />
+
+        <TextView
+            android:id="@+id/newsText"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_marginStart="14dp"
+            android:gravity="center_vertical"
+            android:text="@string/news"
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/newsIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/labelOne"
+            layout="@layout/include_horizontal_cut_off_rule"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/newsText" />
+
+        <ImageView
+            android:id="@+id/homeIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:contentDescription="@string/image_view"
+            android:src="@drawable/tab_home_unselect"
+            app:layout_constraintBottom_toBottomOf="@+id/homeText"
+            app:layout_constraintStart_toStartOf="@id/newsIcon"
+            app:layout_constraintTop_toBottomOf="@+id/labelOne" />
+
+        <TextView
+            android:id="@+id/homeText"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:gravity="center_vertical"
+            android:text="@string/home_page"
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/newsText"
+            app:layout_constraintTop_toBottomOf="@id/labelOne" />
+
+        <include
+            android:id="@+id/labelTwo"
+            layout="@layout/include_horizontal_cut_off_rule"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeText" />
+
+        <ImageView
+            android:id="@+id/shoppingIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:contentDescription="@string/image_view"
+            android:src="@drawable/tab_shopping_unselect"
+            app:layout_constraintBottom_toBottomOf="@+id/shoppingText"
+            app:layout_constraintStart_toStartOf="@id/newsIcon"
+            app:layout_constraintTop_toBottomOf="@+id/labelTwo" />
+
+        <TextView
+            android:id="@+id/shoppingText"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:gravity="center_vertical"
+            android:text="@string/shopping"
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/newsText"
+            app:layout_constraintTop_toBottomOf="@id/labelTwo" />
+
+        <include
+            android:id="@+id/labelThree"
+            layout="@layout/include_horizontal_cut_off_rule"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shoppingText" />
+
+        <ImageView
+            android:id="@+id/mineIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:contentDescription="@string/image_view"
+            android:src="@drawable/tab_mine_unselect"
+            app:layout_constraintBottom_toBottomOf="@+id/mineText"
+            app:layout_constraintStart_toStartOf="@id/newsIcon"
+            app:layout_constraintTop_toBottomOf="@+id/labelThree" />
+
+        <TextView
+            android:id="@+id/mineText"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:gravity="center_vertical"
+            android:text="@string/mine"
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/newsText"
+            app:layout_constraintTop_toBottomOf="@id/labelThree" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

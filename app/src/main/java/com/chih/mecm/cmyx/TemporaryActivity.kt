@@ -1,21 +1,24 @@
 package com.chih.mecm.cmyx
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup.MarginLayoutParams
 import android.widget.ImageView
-import kotlinx.android.synthetic.main.home_ad_layout.*
+import androidx.appcompat.app.AppCompatActivity
+import com.chih.mecm.cmyx.extend.dp
+import com.chih.mecm.cmyx.extend.setVisible
+import kotlinx.android.synthetic.main.activity_temporary.*
 
 class TemporaryActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home_ad_layout)
-
-        setImageResource(imageView1)
-        setImageResource(imageView2)
-        setImageResource(imageView3)
-        setImageResource(imageView4)
-        setImageResource(imageView5)
+        setContentView(R.layout.activity_temporary)
+        homeAdConstraintLayout.setVisible()
+        setImageResource(imageViewOne)
+        setImageResource(imageViewTwo)
+        setImageResource(imageViewThree)
+        setImageResource(imageViewFour)
     }
 
     private fun setImageResource(imageView: ImageView) {

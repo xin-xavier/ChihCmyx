@@ -32,7 +32,7 @@ import java.util.*
 
 class MainActivity : SimpleActivity() {
 
-    private val tabs = listOf<String>("首页", "消息", "购物车", "我的")
+    private lateinit var tabs: List<String>
     private val tabEntities = ArrayList<CustomTabEntity>()
     private val iconSelectIds: Array<Int> = arrayOf(
         R.drawable.tab_home_select,
@@ -83,6 +83,12 @@ class MainActivity : SimpleActivity() {
         // 检查版本更新
         //AppManager.checkVersionUpdates(this)
 
+        tabs = listOf<String>(
+            getString(R.string.home_page),
+            getString(R.string.news),
+            getString(R.string.shopping),
+            getString(R.string.mine)
+        )
         for (tab in tabs) {
             val indexOf = tabs.indexOf(tab)
             tabEntities.add(
@@ -110,10 +116,6 @@ class MainActivity : SimpleActivity() {
         // viewpager2
         carousel.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                if (position in 2..3) {
-                    //floatingActionButton.visibility = View.INVISIBLE
-                }
-                //pageItem = position
                 navigator.currentTab = position
             }
         })
@@ -148,11 +150,11 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun interfaceTest() {
-         RetrofitHelper.apiServer
-             .subClazz(1)
-             .subscribeOn(Schedulers.io())
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribe()
+        RetrofitHelper.apiServer
+            .subClazz(1)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
         RetrofitHelper.apiServer
             .homeChoiceShop()
             .subscribeOn(Schedulers.io())

@@ -60,7 +60,7 @@ abstract class SimpleWithBarFragment(@LayoutRes override var contentLayoutId: In
         beginTransaction.commit()
     }
 
-    open fun toolbarLayoutRes() = R.layout.xavier_default_toobar_view
+    open fun toolbarLayoutRes() = R.layout.xavier_toolbar_default_view
 
     private fun setContentView(
         view: View,

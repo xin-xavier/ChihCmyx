@@ -35,6 +35,7 @@ class XavierHttpClient private constructor() {
                     .newBuilder()
                     .header(VERSION, AppUtils.getAppVersionName())
                     .header(MODEL, DeviceUtils.getManufacturer())
+                /*
                 if (AppManager.isLogin()) {
                     headerBuilder.header("token", AppManager.getToken())
                 }
@@ -42,7 +43,8 @@ class XavierHttpClient private constructor() {
                     "token",
                     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6Ilx1OGJkYVx1N2Y4ZVx1NGYxOFx1OTAwOSJ9.eyJqdGkiOiJcdThiZGFcdTdmOGVcdTRmMThcdTkwMDkiLCJpc3MiOiJodHRwczpcL1wvYXBpLnNlcnZlci5jaGVuZ21laXlvdXBpbi5jb20iLCJhdWQiOiJodHRwczpcL1wvYXBpLnNlcnZlci5jaGVuZ21laXlvdXBpbi5jb20iLCJpYXQiOjE2MDk4MTcyODEsImV4cCI6MTYxNTAwMTI4MSwiZGF0YSI6ImE6NTp7czozOlwidWlkXCI7aTozO3M6NDpcImluZm9cIjthOjI6e3M6NjpcImF2YXRhclwiO3M6MTI3OlwiaHR0cDpcL1wvdXBsb2FkLmNoZW5nbWVpeW91eHVhbi5jb21cLzE1ODg5MjE0NDMwODNcL3N0b3JhZ2VcL2VtdWxhdGVkXC8wXC9BbmRyb2lkXC9kYXRhXC9jb20ubWVjbS5jbXl4XC9maWxlc1wvUGljdHVyZXNcLzE1ODg5MjE0NDI5MzYuanBlZ1wiO3M6NDpcIm5pY2tcIjtzOjY6XCJcdTY3Y2ZcdTgyMWZcIjt9czo0OlwidHlwZVwiO3M6MzpcImFwcFwiO3M6NTpcInRhYmxlXCI7czo5OlwiYXBwOnVpZDozXCI7czo1OlwidG9rZW5cIjtzOjMyOlwiZWI1M2YwZWYyMDZkZDVkOTJiODhmNTU0ZDIzNDk5NjlcIjt9IiwiaXNfbmV3Ijp0cnVlfQ.eKqCmFc316FDWpxzb9SYSGnn-pjOI1EWhzxKJOWjImg"
                 )
-                headerBuilder.header("xdebug-a1-b2-c3-d4", "3")
+                */
+                headerBuilder.header("xdebug-a1-b2-c3-d4", "5")
 
                 request = headerBuilder.method(
                     request.method, request.body

@@ -9,4 +9,12 @@
     <item name="xavierReturnPager" type="id" />
     <item name="xavierToolbarTitle" type="id" />
     <item name="xavierNavMenu" type="id" />
+    <item name="xavierUnreadNumber" type="id" />
+
+    <item name="xavierToolbarBgView" type="id" />
+    <item name="xavierSearchBoxBgView" type="id" />
+    <item name="xavierSearchBoxEditText" type="id" />
+    <item name="xavierSearchIcon" type="id" />
+    <item name="xavierTabLayout" type="id" />
+
 </resources>

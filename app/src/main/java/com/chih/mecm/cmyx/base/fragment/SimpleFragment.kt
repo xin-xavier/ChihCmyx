@@ -63,7 +63,6 @@ abstract class SimpleFragment(@LayoutRes open var contentLayoutId: Int = 0) :
 
     override fun onDestroyView() {
         super.onDestroyView()
-        contentLayoutId = 0
         rootView = null
         isPrepare = false
     }

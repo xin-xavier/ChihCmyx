@@ -3,6 +3,7 @@ package com.chih.mecm.cmyx.main.news
 import com.chih.mecm.cmyx.base.presenter.BasePresenter
 import com.chih.mecm.cmyx.bean.result.NewsChatResult
 import com.chih.mecm.cmyx.http.client.RetrofitHelper
+import com.chih.mecm.cmyx.http.observer.BusinessHttpException
 import com.chih.mecm.cmyx.http.observer.HttpDefaultObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -21,7 +22,11 @@ class NewsPresenter(view: NewsContract.View) : BasePresenter<NewsContract.View>(
                 }
 
                 override fun onSuccess(t: NewsChatResult) {
-                    view?.showChatList(t)
+                    if(t.dataList.isNullOrEmpty()){
+                        onError(BusinessHttpException("暂无数据",0))
+                    }else{
+                        view?.showChatList(t)
+                    }
                 }
 
                 override fun onError(errorMessage: String) {

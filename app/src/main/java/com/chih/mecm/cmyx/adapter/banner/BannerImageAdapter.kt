@@ -7,12 +7,12 @@ import android.widget.ImageView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.SizeUtils
-import com.chih.mecm.cmyx.bean.result.SlideShowResult
+import com.chih.mecm.cmyx.bean.result.BannerItem
 import com.chih.mecm.cmyx.utils.GlideEngine
 import com.youth.banner.adapter.BannerAdapter
 
-class BannerImageAdapter(slideList: List<SlideShowResult>) :
-    BannerAdapter<SlideShowResult, BannerImageAdapter.BannerViewHolder>(
+class BannerImageAdapter(slideList: List<BannerItem>?) :
+    BannerAdapter<BannerItem, BannerImageAdapter.BannerViewHolder>(
         slideList
     ) {
 
@@ -21,7 +21,7 @@ class BannerImageAdapter(slideList: List<SlideShowResult>) :
     override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
         context = parent?.context
         val imageView = ImageView(context)
-        //注意，必须设置为match_parent，这个是viewpager2强制要求的
+        // 注意，必须设置为 MATCH_PARENT，这个是 ViewPager2 强制要求的
         val layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
@@ -37,14 +37,14 @@ class BannerImageAdapter(slideList: List<SlideShowResult>) :
     }
 
     override fun onBindView(
-        holder: BannerViewHolder,
-        data: SlideShowResult,
+        holder: BannerViewHolder?,
+        data: BannerItem?,
         position: Int,
         size: Int
     ) {
-        GlideEngine.loadBannerImage(context,data.image,holder.imageView)
-        //GlideEngine.loadImage(context!!,data.image,holder.imageView)
+        GlideEngine.loadBannerImage(context, data?.image, holder!!.imageView)
     }
+
 
     inner class BannerViewHolder(@NonNull view: ImageView) :
         RecyclerView.ViewHolder(view) {

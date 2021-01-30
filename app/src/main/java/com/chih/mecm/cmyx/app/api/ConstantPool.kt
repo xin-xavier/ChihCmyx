@@ -22,11 +22,11 @@ interface ConstantPool {
         const val XAVIER_ACTION_BAR_SIZE = 40f
 
         // tab
-        const val LITTLE_SCALE = 1.1f
-        const val BIG_SCALE = 1.4f
+        const val LITTLE_SCALE = 1.0f
+        const val BIG_SCALE = 1.3f
 
         // Glide 图片默认压缩系数
-        const val IMAGE_SIZE_MULTIPLIER = 0.6F
+        const val IMAGE_SIZE_MULTIPLIER = 0.6f
         const val IMAGE_CORNER_RADIUS = 4f
 
         // broadcast

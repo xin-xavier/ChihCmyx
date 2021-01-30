@@ -69,7 +69,7 @@ class GuideActivity : SimpleActivity() {
                 .setBackgroundResource(R.id.bottomView, item.bottomImage)
             val experienceNow = holder.getView<Button>(R.id.experienceNow)
             experienceNow.background =
-                MaterialShapeDrawableUtils.getRoundedShapeDrawable(4f, R.color.grey_900_alpha_100)
+                MaterialShapeDrawableUtils.getShapeDrawable(4f, R.color.grey_900_alpha_100)
             experienceNow.visibility =
                 if (layoutPosition == data.lastIndex) View.VISIBLE else View.GONE
         }

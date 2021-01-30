@@ -9,7 +9,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.SizeUtils
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.app.api.ConstantPool
 import com.chih.mecm.cmyx.base.fragment.helper.AppbarHelper
@@ -48,7 +47,7 @@ abstract class SimpleDecorViewFragment(@LayoutRes override var contentLayoutId: 
         return setContentView(view, container)
     }
 
-    open fun toolbarLayoutRes() = R.layout.xavier_default_toobar_view
+    open fun toolbarLayoutRes() = R.layout.xavier_toolbar_default_view
 
     open fun setToolbar() {
         val beginTransaction = childFragmentManager.beginTransaction()
@@ -74,7 +73,7 @@ abstract class SimpleDecorViewFragment(@LayoutRes override var contentLayoutId: 
 
 
     // 判断使用的是否是默认的 toolbarRes
-    open fun isDefaultToolbar() = toolbarLayoutRes() == R.layout.xavier_default_toobar_view
+    open fun isDefaultToolbar() = toolbarLayoutRes() == R.layout.xavier_toolbar_default_view
 
     // 当页面使用的是否是默认的 toolbarRes 时，方便设置 title
     open fun setDefaultTitle(title: String) {

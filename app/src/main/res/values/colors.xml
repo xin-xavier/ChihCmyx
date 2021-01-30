@@ -10,18 +10,22 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--COLOR-->
-    <color name="grey_900_alpha_100">#FF14100E</color>
-    <color name="orange_200_alpha_100">#FFEBC06F</color>
-    <color name="grey_700_alpha_100">#FF666666</color>
+    <!--GREY-->
     <color name="grey_50_alpha_100">#FFF8F8F8</color>
+    <color name="grey_700_alpha_100">#FF666666</color>
     <color name="grey_500_alpha_100">#FF999999</color>
+    <color name="grey_900_alpha_100">#FF14100E</color>
+    <!--ORANGE-->
+    <color name="orange_200_alpha_100">#FFEBC06F</color>
+    <!--RED-->
+    <color name="red_700_alpha_100">#FFCC3333</color>
+    <color name="red_a400_alpha_100">#FFF42C2E</color>
 
     <!--APP-->
     <color name="colorPrimary">@android:color/transparent</color>
     <color name="colorPrimaryVariant">@android:color/transparent</color>
     <color name="colorPrimaryDark">@android:color/transparent</color>
     <color name="colorOnPrimary">@color/initial</color>
-
     <color name="colorAccent">#FF333333</color>
     <color name="textColor">#FF333333</color>
     <color name="colorBackground">@color/initial</color>

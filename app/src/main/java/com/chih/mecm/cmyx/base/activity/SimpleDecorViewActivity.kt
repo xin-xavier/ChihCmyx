@@ -59,10 +59,10 @@ abstract class SimpleDecorViewActivity : SimpleActivity(), OnPrepareListener {
 
     open fun beforeLayoutRes(): Int = R.layout.xavier_decor_view
 
-    open fun toolbarLayoutRes() = R.layout.xavier_default_toobar_view
+    open fun toolbarLayoutRes() = R.layout.xavier_toolbar_default_view
 
     // 判断使用的是否是默认的 toolbarRes
-    open fun isDefaultToolbar() = toolbarLayoutRes() == R.layout.xavier_default_toobar_view
+    open fun isDefaultToolbar() = toolbarLayoutRes() == R.layout.xavier_toolbar_default_view
 
     // 当页面使用的是否是默认的 toolbarRes 时，设置 title
     open fun setDefaultTitle(title: String) {

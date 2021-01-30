@@ -2,28 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/adConstraintLayout"
+    android:id="@+id/homeAdConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minWidth="375dp"
     android:minHeight="173dp"
     android:paddingStart="12dp"
-    android:paddingEnd="12dp">
+    android:paddingEnd="12dp"
+    android:visibility="visible">
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/imageViewOne"
         android:layout_width="0dp"
         android:layout_height="173dp"
         android:contentDescription="@string/image_view"
         android:scaleType="centerCrop"
         android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewTwo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageViewFour"
         android:layout_width="89dp"
         android:layout_height="84dp"
         android:contentDescription="@string/image_view"
@@ -31,12 +32,12 @@
         android:paddingEnd="0dp"
         android:scaleType="centerCrop"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewOne"
         app:layout_constraintEnd_toEndOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageViewThree"
         android:layout_width="0dp"
         android:layout_height="84dp"
         android:contentDescription="@string/image_view"
@@ -44,13 +45,13 @@
         android:paddingEnd="0dp"
         android:scaleType="centerCrop"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewOne"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewFour"
+        app:layout_constraintStart_toEndOf="@+id/imageViewOne"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewTwo"
         android:layout_width="178dp"
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
@@ -59,13 +60,13 @@
         android:paddingEnd="0dp"
         android:scaleType="centerCrop"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewThree"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageViewFive"
         android:layout_width="0dp"
         android:layout_height="60.5dp"
         android:layout_marginTop="12dp"
@@ -75,8 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView1"
+        app:layout_constraintTop_toBottomOf="@id/imageViewOne"
         tools:srcCompat="@tools:sample/avatars" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

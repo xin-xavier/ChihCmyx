@@ -1,4 +1,4 @@
-package com.xavier.simple.demo.bean.result
+package com.chih.mecm.cmyx.bean.result
 
 import com.google.gson.annotations.SerializedName
 
