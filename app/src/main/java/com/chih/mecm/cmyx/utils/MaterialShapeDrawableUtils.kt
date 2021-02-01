@@ -2,6 +2,7 @@ package com.chih.mecm.cmyx.utils
 
 import android.graphics.Paint
 import androidx.annotation.ColorRes
+import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.extend.dp
 import com.chih.mecm.cmyx.extend.value
 import com.google.android.material.shape.CornerFamily
@@ -22,8 +23,8 @@ object MaterialShapeDrawableUtils {
             .build()
         return MaterialShapeDrawable(shapePathModel)
             .apply {
-                setTint(color.value())
                 paintStyle = Paint.Style.FILL
+                setTint(color.value())
             }
     }
 
@@ -34,8 +35,8 @@ object MaterialShapeDrawableUtils {
             .build()
         return MaterialShapeDrawable(shapePathModel)
             .apply {
-                setTint(color.value())
                 paintStyle = Paint.Style.FILL
+                setTint(color.value())
             }
     }
 
@@ -46,9 +47,26 @@ object MaterialShapeDrawableUtils {
             .build()
         return MaterialShapeDrawable(shapePathModel)
             .apply {
-                setTint(color.value())
                 paintStyle = Paint.Style.FILL
+                setTint(color.value())
             }
+    }
+
+
+    fun strokeShapeDrawable(
+        cornerSize: Float,
+        @ColorRes strokeColor: Int,
+        strokeWidth: Float = 1f,
+        @ColorRes color: Int = R.color.transparent
+    ): MaterialShapeDrawable {
+        val shapePathModel = ShapeAppearanceModel.builder()
+            .setAllCorners(CornerFamily.ROUNDED, cornerSize.dp())
+            .build()
+        return MaterialShapeDrawable(shapePathModel).apply {
+            paintStyle = Paint.Style.STROKE
+            setStroke(strokeWidth, strokeColor.value())
+            setTint(color.value())
+        }
     }
 
 }

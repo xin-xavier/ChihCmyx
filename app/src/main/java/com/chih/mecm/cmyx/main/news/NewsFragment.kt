@@ -5,10 +5,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.chih.mecm.cmyx.EMPTY
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.app.APixelActivity
 import com.chih.mecm.cmyx.app.AppManager
@@ -16,14 +14,12 @@ import com.chih.mecm.cmyx.base.fragment.BaseDecorViewFragment
 import com.chih.mecm.cmyx.bean.result.NewsChatDataListItem
 import com.chih.mecm.cmyx.bean.result.NewsChatResult
 import com.chih.mecm.cmyx.extend.toast
-import com.chih.mecm.cmyx.popup.NavPopup
 import com.chih.mecm.cmyx.utils.GlideEngine
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
 import com.chih.mecm.cmyx.utils.XavierTimeUtils
 import com.chih.mecm.cmyx.utils.XavierViewUtils
 import com.classic.common.MultipleStatusView.STATUS_CONTENT
 import com.classic.common.MultipleStatusView.STATUS_EMPTY
-import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_multip_news.*
 import kotlinx.android.synthetic.main.fragment_news.*
@@ -132,6 +128,11 @@ class NewsFragment : BaseDecorViewFragment<NewsContract.Presenter<NewsContract.V
                 .setVisible(R.id.unreadNumber, unread > 0)
                 .setText(R.id.lastNews, item.lastMessage)
                 .setText(R.id.unreadNumber, unread.toString())
+            if(official){
+                val officialLabel = holder.getView<TextView>(R.id.officialLabel)
+                officialLabel.background =
+                    MaterialShapeDrawableUtils.strokeShapeDrawable(4f, R.color.main_orange)
+            }
             val constraintLayout = holder.getView<ConstraintLayout>(R.id.constraintLayout)
             constraintLayout.setOnClickListener {
                 val aPixelIntent =

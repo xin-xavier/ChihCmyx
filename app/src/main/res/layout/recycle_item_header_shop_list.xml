@@ -3,8 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:background="@color/white">
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/initial"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/storeView"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topView"
+        tools:background="@color/white" />
 
     <!--19 + 12 + 12 = 43-->
     <View
@@ -12,9 +31,9 @@
         android:layout_width="43dp"
         android:layout_height="43dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/storeView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/storeView"
         tools:visibility="visible" />
 
     <CheckBox
@@ -44,13 +63,13 @@
         android:layout_marginBottom="12dp"
         android:contentDescription="@string/image_view"
         android:src="@mipmap/ic_store"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/storeView"
         app:layout_constraintStart_toEndOf="@id/check"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/storeView"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/shopName"
+        android:id="@+id/storeName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
@@ -61,22 +80,20 @@
         android:maxLines="1"
         android:textColor="@color/textColor"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/storeView"
         app:layout_constraintEnd_toStartOf="@id/status"
         app:layout_constraintStart_toEndOf="@id/storeIcon"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/storeView"
         tools:text="@string/tools_none" />
 
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
         android:textColor="@color/main_orange"
         android:textSize="11sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/shopName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/storeName"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SmallSp"
         tools:text="@string/tools_none" />

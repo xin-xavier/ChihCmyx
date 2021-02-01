@@ -16,7 +16,7 @@ data class OrderGoodsItem(
     @SerializedName("realmoney")
     val realMoney: String = "",
     @SerializedName("rebate_order_msg")
-    val rebateOrderMsg: String = "",
+    val rebateOrderMsg: String? = "",
     @SerializedName("uid")
     val uid: Int = 0,
     @SerializedName("goods_image")

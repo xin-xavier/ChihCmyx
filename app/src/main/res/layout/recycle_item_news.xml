@@ -63,7 +63,7 @@
             android:layout_marginStart="12dp"
             android:gravity="center"
             android:text="@string/official"
-            android:background="@drawable/shape_stroke_corners4"
+
             android:textAlignment="center"
             android:textColor="@color/main_orange"
             android:textSize="10sp"
@@ -74,6 +74,7 @@
             tools:ignore="SmallSp"
             tools:text="@string/official"
             tools:visibility="visible" />
+        <!--android:background="@drawable/shape_stroke_corners4"-->
 
         <TextView
             android:id="@+id/unreadNumber"
