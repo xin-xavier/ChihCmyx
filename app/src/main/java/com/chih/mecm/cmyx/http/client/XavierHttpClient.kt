@@ -34,7 +34,8 @@ class XavierHttpClient private constructor() {
                 val headerBuilder: Request.Builder = request
                     .newBuilder()
                     .header(VERSION, AppUtils.getAppVersionName())
-                    .header(MODEL, DeviceUtils.getManufacturer())
+                    //.header(MODEL, DeviceUtils.getManufacturer())
+                    .header(MODEL, "iPhone")
                 /*
                 if (AppManager.isLogin()) {
                     headerBuilder.header("token", AppManager.getToken())

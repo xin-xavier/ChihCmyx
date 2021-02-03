@@ -9,8 +9,8 @@ buildscript {
         targetSdkVersion = 30
 
         // Version
-        versionCode = 41
-        versionName = '2.4.1'
+        versionCode = 43
+        versionName = '2.4.3'
 
         // App dependencies
         appCompatVersion = '1.2.0'

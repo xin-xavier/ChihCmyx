@@ -3,17 +3,26 @@ package com.chih.mecm.cmyx.base.fragment.helper
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import androidx.annotation.LayoutRes
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.base.fragment.SimpleFragment
 import com.chih.mecm.cmyx.base.presentation.OnPrepareListener
 import com.chih.mecm.cmyx.popup.NavPopup
 
-class AppbarHelper(@LayoutRes override var contentLayoutId: Int = 0, onPrepare: OnPrepareListener) :
-    SimpleFragment(contentLayoutId) {
+class AppbarHelper : SimpleFragment {
 
-    private val onPrepareListener: OnPrepareListener = onPrepare
+    private var onPrepareListener: OnPrepareListener? = null
     var rootHeight: Int = 0
+
+    // 必须有一个默认的构造函数
+    // 因为 Fragment 通过反则重建的
+    // 如果没有这个函数，则重建时会找不到构造方法
+    constructor() : super()
+    constructor(
+        contentLayoutId: Int,
+        onPrepareListener: OnPrepareListener
+    ) : super(contentLayoutId) {
+        this.onPrepareListener = onPrepareListener
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,7 +55,7 @@ class AppbarHelper(@LayoutRes override var contentLayoutId: Int = 0, onPrepare: 
          * 在默认的判断和监听后面回调,如果相应的 activity 设置监听
          * 将以 activity 里面设置的监听为准
          */
-        onPrepareListener.onPrepare(view)
+        onPrepareListener?.onPrepare(view)
     }
 
     override fun ui() {}

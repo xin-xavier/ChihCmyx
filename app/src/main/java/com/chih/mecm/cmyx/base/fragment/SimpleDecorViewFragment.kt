@@ -15,11 +15,13 @@ import com.chih.mecm.cmyx.base.fragment.helper.AppbarHelper
 import com.chih.mecm.cmyx.base.presentation.OnPrepareListener
 import com.chih.mecm.cmyx.extend.dp
 
-abstract class SimpleDecorViewFragment(@LayoutRes override var contentLayoutId: Int = 0) :
-    SimpleFragment(contentLayoutId), OnPrepareListener {
+abstract class SimpleDecorViewFragment : SimpleFragment, OnPrepareListener {
 
     lateinit var inflater: LayoutInflater
     lateinit var toolbarHelper: AppbarHelper
+
+    constructor() : super()
+    constructor(contentLayoutId: Int) : super(contentLayoutId)
 
     override fun onCreateView(
         inflater: LayoutInflater,

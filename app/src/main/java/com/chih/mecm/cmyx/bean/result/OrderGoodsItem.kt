@@ -22,7 +22,7 @@ data class OrderGoodsItem(
     @SerializedName("goods_image")
     val goodsImage: String = "",
     @SerializedName("single_status")
-    val singleStatus: Int = 0,
+    var singleStatus: Int = 0,
     @SerializedName("price")
     val price: String = "",
     @SerializedName("comment")

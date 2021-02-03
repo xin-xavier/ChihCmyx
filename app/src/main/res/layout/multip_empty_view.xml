@@ -51,9 +51,11 @@
             android:text="@string/to_login"
             android:textColor="@color/main_orange"
             android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emptyTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/emptyTextView"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

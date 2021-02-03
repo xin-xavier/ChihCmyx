@@ -1,0 +1,143 @@
+package com.chih.mecm.cmyx.utils
+
+import android.graphics.drawable.Drawable
+import android.view.Gravity
+import android.widget.Button
+import android.widget.LinearLayout
+import com.chih.mecm.cmyx.R
+import com.chih.mecm.cmyx.extend.dp
+import com.chih.mecm.cmyx.extend.value
+
+object XavierOrderUtils {
+
+    private val primaryColor = R.color.main_orange.value()
+    private val secondaryColor = R.color.textColor.value()
+
+    private val primaryDrawable =
+        MaterialShapeDrawableUtils.getShapeDrawable(13f, R.color.grey_900_alpha_100)
+    private val secondaryDrawable =
+        MaterialShapeDrawableUtils.strokeShapeDrawable(13f, R.color.grey_600_alpha_100)
+
+    private val primaryStyle = OrderActionStyleEntity(primaryColor, primaryDrawable)
+    private val secondaryStyle = OrderActionStyleEntity(secondaryColor, secondaryDrawable)
+
+    private val actionStyleMap = mapOf(
+        "去付款" to primaryStyle,
+        "提取卡密" to primaryStyle,
+        "确认收货" to primaryStyle,
+        "查看卡密" to primaryStyle,
+        "评价" to primaryStyle,
+
+        "取消订单" to secondaryStyle,
+        "查看物流" to secondaryStyle,
+        "删除订单" to secondaryStyle
+    )
+
+    fun pointOrderStatus(status: Int): String {
+        return when (status) {
+            0 -> "买家未付款"
+            1 -> "买家已付款"
+            2, 8 -> "卖家已发货"
+            3, 5 -> "交易完成"
+            6 -> "取消订单"
+            24 -> "交易关闭"
+            else -> ""
+        }
+    }
+
+    fun pointCommodityStatus(status: Int): String {
+        return when (status) {
+            0 -> "待付款"
+            1 -> "待发货"
+            2 -> "待收货"
+            3 -> "待评价"
+            4 -> "申请换货"
+            5 -> "已完成"
+            6 -> "取消订单"
+            7 -> "申请退款"
+            8 -> "已查看卡密"
+            9 -> "同意退款"
+            10 -> "拒绝退款"
+            11 -> "申请退款退货"
+            12 -> "退款中"
+            13 -> "退款成功"
+            14 -> "拒绝退款"
+            15 -> "撤销退款"
+            16 -> "换货中"
+            17 -> "换货成功"
+            18 -> "拒绝换货"
+            19 -> "撤销换货"
+            20 -> "退货退款中"
+            21 -> "退货退款成功"
+            22 -> "拒绝退货退款"
+            23 -> "撤销退货退款"
+            24 -> "交易关闭"
+            else -> ""
+        }
+    }
+
+    fun pointOrderAction(status: Int, shippingMethod: Int, linearLayout: LinearLayout) {
+        when (status) {
+            0 -> {
+                addAction(linearLayout, "去付款", "取消订单")
+            }
+            2 -> {
+                val strings = arrayListOf<String>()
+                strings.add(
+                    if (shippingMethod == 2) {
+                        "提取卡密"
+                    } else {
+                        "确认收货"
+                    }
+                )
+                if (shippingMethod == 0) {
+                    strings.add("确认收货")
+                }
+                addAction(linearLayout, *strings.toTypedArray())
+            }
+            3 -> {
+                if (shippingMethod == 2) {
+                    addAction(linearLayout, "评价", "查看卡密", "删除订单")
+                } else {
+                    addAction(linearLayout, "评价", "删除订单")
+                }
+            }
+            5 -> {
+                if (shippingMethod == 2) {
+                    addAction(linearLayout, "查看卡密", "删除订单")
+                } else {
+                    addAction(linearLayout, "删除订单")
+                }
+            }
+            8 -> {
+                addAction(linearLayout, "查看卡密", "确认收货")
+            }
+            else -> {
+            }
+        }
+    }
+
+    private fun addAction(linearLayout: LinearLayout, vararg texts: String) {
+        linearLayout.removeAllViews()
+        for (text in texts) {
+            val context = linearLayout.context
+            val button = Button(context)
+            button.gravity = Gravity.CENTER
+            button.setPadding(0,0,0,0)
+            button.text = text
+            button.textSize = 12f
+            val actionStyle = actionStyleMap.getOrElse(text) {
+                primaryStyle
+            }
+            button.setTextColor(actionStyle.textColor)
+            button.background = actionStyle.drawable
+            linearLayout.addView(button)
+            button.layoutParams.width = 65f.dp().toInt()
+            button.layoutParams.height = 22f.dp().toInt()
+            XavierViewUtils.setMarginStart(button)
+        }
+    }
+
+    data class OrderActionStyleEntity(val textColor: Int, val drawable: Drawable)
+
+}

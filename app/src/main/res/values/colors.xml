@@ -12,8 +12,9 @@
     <!--COLOR-->
     <!--GREY-->
     <color name="grey_50_alpha_100">#FFF8F8F8</color>
-    <color name="grey_700_alpha_100">#FF666666</color>
     <color name="grey_500_alpha_100">#FF999999</color>
+    <color name="grey_600_alpha_100">#FF707070</color>
+    <color name="grey_700_alpha_100">#FF666666</color>
     <color name="grey_900_alpha_100">#FF14100E</color>
     <!--ORANGE-->
     <color name="orange_200_alpha_100">#FFEBC06F</color>

@@ -1,13 +1,14 @@
 package com.chih.mecm.cmyx.base.fragment
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
 import com.chih.mecm.cmyx.base.presenter.IBasePresenter
 
-abstract class BaseWithBarFragment<P : IBasePresenter<*>>(@LayoutRes override var contentLayoutId: Int = 0) :
-    SimpleWithBarFragment(contentLayoutId) {
+abstract class BaseWithBarFragment<P : IBasePresenter<*>> : SimpleWithBarFragment {
 
     var presenter: P? = null
+
+    constructor() : super()
+    constructor(contentLayoutId: Int) : super(contentLayoutId)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

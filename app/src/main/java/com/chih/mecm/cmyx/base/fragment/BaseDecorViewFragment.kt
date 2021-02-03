@@ -4,10 +4,13 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import com.chih.mecm.cmyx.base.presenter.IBasePresenter
 
-abstract class BaseDecorViewFragment<P : IBasePresenter<*>>(@LayoutRes override var contentLayoutId: Int = 0) :
-    SimpleDecorViewFragment() {
+abstract class BaseDecorViewFragment<P : IBasePresenter<*>> :
+    SimpleDecorViewFragment {
 
     var presenter: P? = null
+
+    constructor() : super()
+    constructor(contentLayoutId: Int) : super(contentLayoutId)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

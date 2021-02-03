@@ -57,13 +57,13 @@ object MaterialShapeDrawableUtils {
         cornerSize: Float,
         @ColorRes strokeColor: Int,
         strokeWidth: Float = 1f,
-        @ColorRes color: Int = R.color.transparent
+        @ColorRes color: Int = R.color.white
     ): MaterialShapeDrawable {
         val shapePathModel = ShapeAppearanceModel.builder()
             .setAllCorners(CornerFamily.ROUNDED, cornerSize.dp())
             .build()
         return MaterialShapeDrawable(shapePathModel).apply {
-            paintStyle = Paint.Style.STROKE
+            paintStyle = Paint.Style.FILL_AND_STROKE
             setStroke(strokeWidth, strokeColor.value())
             setTint(color.value())
         }

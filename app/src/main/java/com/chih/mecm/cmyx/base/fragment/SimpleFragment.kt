@@ -3,21 +3,24 @@ package com.chih.mecm.cmyx.base.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.LayoutRes
 import com.blankj.utilcode.util.BarUtils
 import com.chih.mecm.cmyx.app.AppManager
 import com.chih.mecm.cmyx.app.login.LoginActivity
 import com.chih.mecm.cmyx.base.presentation.UIPresentation
 import com.jaeger.library.StatusBarUtil
 
-abstract class SimpleFragment(@LayoutRes open var contentLayoutId: Int = 0) :
-    LifeCycleFragment(contentLayoutId),
-    UIPresentation {
+abstract class SimpleFragment : LifeCycleFragment, UIPresentation {
 
+    open var contentLayoutId: Int = 0
     var rootView: View? = null
 
     // 视图是否准备好了
     var isPrepare = false
+
+    constructor() : super()
+    constructor(contentLayoutId: Int) : super(contentLayoutId) {
+        this.contentLayoutId = contentLayoutId
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

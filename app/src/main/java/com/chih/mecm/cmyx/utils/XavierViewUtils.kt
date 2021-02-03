@@ -2,7 +2,10 @@ package com.chih.mecm.cmyx.utils
 
 import android.content.Context
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import com.chih.mecm.cmyx.R
+import com.chih.mecm.cmyx.extend.dp
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
@@ -71,4 +74,10 @@ object XavierViewUtils {
             refreshLayout.finishLoadMore()
         }
     }
+
+    fun setMarginStart(view: View) {
+        val params = view.layoutParams as ViewGroup.MarginLayoutParams
+        params.marginStart = 12f.dp().toInt()
+    }
+
 }
