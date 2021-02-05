@@ -23,7 +23,7 @@ import com.classic.common.MultipleStatusView.STATUS_EMPTY
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_multip_news.*
 import kotlinx.android.synthetic.main.fragment_news.*
-import kotlinx.android.synthetic.main.multip_empty_view.*
+import kotlinx.android.synthetic.main.multip_with_refresh_default_empty_view.*
 
 class NewsFragment : BaseDecorViewFragment<NewsContract.Presenter<NewsContract.View>>(),
     NewsContract.View {

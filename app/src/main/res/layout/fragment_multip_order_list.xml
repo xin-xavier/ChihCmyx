@@ -7,5 +7,4 @@
     android:layout_height="match_parent"
     app:contentView="@layout/fragment_order_list"
     app:loadingView="@layout/multip_default_loading_view"
-    app:emptyView="@layout/multip_empty_view"
     tools:context=".order.fragment.OrderListFragment" />

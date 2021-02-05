@@ -39,10 +39,12 @@ data class OrderListResult(
     @SerializedName("has_refund")
     val hasRefund: Int = 0,
     @SerializedName("status")
-    val status: Int = 0
+    val status: Int = 0,
+    @SerializedName("order_total")
+    val orderTotal: Int = 0,
 )
 
 data class OrderListResultSectionEntity(
-    val shop: OrderListResult?,
+    val shop: OrderListResult,
     val goods: OrderGoodsItem?, override val isHeader: Boolean
 ) : SectionEntity

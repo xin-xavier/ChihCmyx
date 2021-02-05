@@ -12,8 +12,8 @@
         android:id="@+id/emptyConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="48dp"
-        android:paddingBottom="@dimen/dp_40">
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp">
 
         <ImageView
             android:id="@+id/emptyImageView"
