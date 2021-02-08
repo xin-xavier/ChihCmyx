@@ -3,7 +3,7 @@ package com.chih.mecm.cmyx.utils.divide
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.chih.mecm.cmyx.extend.dp
+import com.chih.mecm.cmyx.utils.extend.dp
 
 class UnifitItemDecoration(
     divide: Float = 12f,

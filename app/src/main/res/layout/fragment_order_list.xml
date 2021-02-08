@@ -9,69 +9,16 @@
     app:srlEnableRefresh="false"
     tools:context=".order.fragment.OrderListFragment">
 
-    <com.classic.common.MultipleStatusView
+    <com.chih.mecm.cmyx.widget.JvpMultipleStatusView
         android:id="@+id/multipleStatusLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:contentView="@layout/multip_horizontal_12dp_space_recycler_view"
-        app:emptyView="@layout/multip_default_empty_view"
+        android:layout_height="match_parent"
+        app:contentView="@layout/multip_universal_recycler_view"
+        app:emptyView="@layout/multip_with_height_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:loadingView="@layout/multip_default_loading_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:loadingView="@layout/multip_default_loading_view"
         tools:context=".order.fragment.OrderListFragment" />
-
-   <!-- <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-                <FrameLayout
-                    android:id="@+id/orderLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/orderRecycle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:visibility="gone"
-                        android:layout_marginEnd="12dp"
-                        android:orientation="vertical"
-                        android:overScrollMode="never"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <include layout="@layout/multip_with_refresh_default_empty_view" />
-
-                </FrameLayout>
-
-        <com.classic.common.MultipleStatusView
-            android:id="@+id/multipleStatusLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentView="@layout/multip_horizontal_12dp_space_recycler_view"
-            app:emptyView="@layout/multip_default_empty_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:loadingView="@layout/multip_default_loading_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context=".order.fragment.OrderListFragment" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recommendRecycle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/multipleStatusLayout" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </com.scwang.smart.refresh.layout.SmartRefreshLayout>

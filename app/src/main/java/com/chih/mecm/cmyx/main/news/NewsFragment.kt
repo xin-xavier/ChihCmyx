@@ -13,7 +13,7 @@ import com.chih.mecm.cmyx.app.AppManager
 import com.chih.mecm.cmyx.base.fragment.BaseDecorViewFragment
 import com.chih.mecm.cmyx.bean.result.NewsChatDataListItem
 import com.chih.mecm.cmyx.bean.result.NewsChatResult
-import com.chih.mecm.cmyx.extend.toast
+import com.chih.mecm.cmyx.utils.extend.toast
 import com.chih.mecm.cmyx.utils.GlideEngine
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
 import com.chih.mecm.cmyx.utils.XavierTimeUtils

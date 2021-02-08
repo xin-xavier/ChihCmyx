@@ -1,4 +1,4 @@
-package com.chih.mecm.cmyx.order.fragment
+package com.chih.mecm.cmyx.order
 
 import com.chih.mecm.cmyx.base.presenter.BasePresenter
 import com.chih.mecm.cmyx.bean.result.CommodityResult

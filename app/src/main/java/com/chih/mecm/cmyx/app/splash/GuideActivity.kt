@@ -1,6 +1,5 @@
 package com.chih.mecm.cmyx.app.splash
 
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -11,12 +10,7 @@ import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.app.AppManager
 import com.chih.mecm.cmyx.base.activity.SimpleActivity
 import com.chih.mecm.cmyx.bean.entity.GuideEntity
-import com.chih.mecm.cmyx.extend.dp
-import com.chih.mecm.cmyx.extend.value
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.RoundedCornerTreatment
-import com.google.android.material.shape.ShapeAppearanceModel
 import kotlinx.android.synthetic.main.activity_guide.*
 
 class GuideActivity : SimpleActivity() {

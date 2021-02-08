@@ -5,6 +5,7 @@
     android:id="@+id/commodityConstraintLayout"
     android:layout_width="169.5dp"
     android:layout_height="wrap_content"
+    android:minWidth="169.5dp"
     tools:background="@color/white">
 
     <ImageView

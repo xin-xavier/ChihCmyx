@@ -3,8 +3,8 @@ package com.chih.mecm.cmyx.utils
 import android.graphics.Paint
 import androidx.annotation.ColorRes
 import com.chih.mecm.cmyx.R
-import com.chih.mecm.cmyx.extend.dp
-import com.chih.mecm.cmyx.extend.value
+import com.chih.mecm.cmyx.utils.extend.dp
+import com.chih.mecm.cmyx.utils.extend.value
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel

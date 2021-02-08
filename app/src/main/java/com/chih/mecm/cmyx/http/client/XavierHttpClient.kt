@@ -46,6 +46,7 @@ class XavierHttpClient private constructor() {
                 )
                 */
                 headerBuilder.header("xdebug-a1-b2-c3-d4", "5")
+                headerBuilder.header("xdebug-a1-b2-c3-d4", "3")
 
                 request = headerBuilder.method(
                     request.method, request.body

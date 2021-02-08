@@ -1,5 +1,6 @@
-package com.chih.mecm.cmyx.adapter.pager
+package com.chih.mecm.cmyx.adapter.recycle
 
+import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.blankj.utilcode.util.SpanUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -9,8 +10,8 @@ import com.chih.mecm.cmyx.bean.result.CommodityItem
 import com.chih.mecm.cmyx.utils.GlideEngine
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
 
-class CommodityAdapter(data: MutableList<CommodityItem>?) :
-    BaseQuickAdapter<CommodityItem, BaseViewHolder>(R.layout.recycle_item_commodity, data) {
+class CommodityAdapter(@LayoutRes private val layoutResId: Int, data: MutableList<CommodityItem>?) :
+    BaseQuickAdapter<CommodityItem, BaseViewHolder>(layoutResId, data) {
     override fun convert(holder: BaseViewHolder, item: CommodityItem) {
         holder.getView<ConstraintLayout>(R.id.commodityConstraintLayout).background =
             MaterialShapeDrawableUtils.getShapeDrawable(4f, R.color.white)

@@ -1,36 +1,39 @@
-package com.chih.mecm.cmyx.order.fragment
+package com.chih.mecm.cmyx.order
 
 import android.annotation.SuppressLint
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.SpanUtils
 import com.chad.library.adapter.base.BaseSectionQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.chih.mecm.cmyx.R
-import com.chih.mecm.cmyx.adapter.pager.CommodityAdapter
+import com.chih.mecm.cmyx.adapter.recycle.CommodityAdapter
 import com.chih.mecm.cmyx.base.fragment.BaseFragment
 import com.chih.mecm.cmyx.bean.entity.TabEntity
 import com.chih.mecm.cmyx.bean.result.CommodityItem
 import com.chih.mecm.cmyx.bean.result.CommodityResult
 import com.chih.mecm.cmyx.bean.result.OrderListResult
 import com.chih.mecm.cmyx.bean.result.OrderListResultSectionEntity
-import com.chih.mecm.cmyx.extend.dp
-import com.chih.mecm.cmyx.extend.toast
-import com.chih.mecm.cmyx.extend.value
+import com.chih.mecm.cmyx.order.OrderListContract
+import com.chih.mecm.cmyx.utils.extend.dp
+import com.chih.mecm.cmyx.utils.extend.setVisible
+import com.chih.mecm.cmyx.utils.extend.toast
+import com.chih.mecm.cmyx.utils.extend.value
 import com.chih.mecm.cmyx.utils.GlideEngine
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
 import com.chih.mecm.cmyx.utils.XavierOrderUtils
 import com.chih.mecm.cmyx.utils.XavierViewUtils
 import kotlinx.android.synthetic.main.fragment_order_list.*
-import kotlinx.android.synthetic.main.multip_horizontal_12dp_space_recycler_view.*
+import kotlinx.android.synthetic.main.multip_default_loading_view.*
+import kotlinx.android.synthetic.main.multip_universal_recycler_view.*
 
 private const val ARG_PARAM = "param"
 
@@ -42,7 +45,7 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
     private var limit = 8
     private var orderPage = 1
 
-    val map = mutableMapOf<String, Int>("limit" to limit, "page" to orderPage)
+    private val map = mutableMapOf<String, Int>("limit" to limit, "page" to orderPage)
 
     private val sectionList = mutableListOf<OrderListResultSectionEntity>()
     private var orderAdapter: OrderListAdapter? = null
@@ -68,7 +71,6 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_order_list, container, false)
         return inflater.inflate(R.layout.fragment_order_list, container, false)
     }
 
@@ -79,11 +81,11 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
         }
         refreshLayout.setOnLoadMoreListener {
             if (sectionList.size >= orderTotal) {
-                orderPage++
-                httpOrderList()
-            } else {
                 rowsPage++
                 presenter?.recommendGoods(rowsPage)
+            } else {
+                orderPage++
+                httpOrderList()
             }
         }
     }
@@ -92,17 +94,37 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
         return OrderListPresenter(this)
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
 
         multipleStatusLayout.showLoading()
+        loading_view.setVisible()
 
         if (orderAdapter == null) {
             orderAdapter = OrderListAdapter(sectionList)
             universalRecycle.layoutManager =
                 LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            universalRecycle.addItemDecoration(object : RecyclerView.ItemDecoration() {
+                val toInt = 12f.dp().toInt()
+                override fun getItemOffsets(
+                    outRect: Rect,
+                    view: View,
+                    parent: RecyclerView,
+                    state: RecyclerView.State
+                ) {
+                    //super.getItemOffsets(outRect, view, parent, state)
+                    val position = parent.getChildAdapterPosition(view)
+                    if (position < orderAdapter?.headerLayoutCount ?: 0) {
+                        return
+                    }
+                    if (position > sectionList.lastIndex) {
+                        return
+                    }
+                    outRect.left = toInt
+                    outRect.right = toInt
+                }
+            })
             universalRecycle.adapter = orderAdapter
-            //orderAdapter?.addFooterView(XavierViewUtils.getDivide12View(context))
         }
 
         httpOrderList()
@@ -117,9 +139,7 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
         XavierViewUtils.finishRefreshLayoutAnim(refreshLayout)
         enableRefreshLayout()
 
-        universalRecycle.postDelayed({
-            multipleStatusLayout.showContent()
-        }, 1500)
+        multipleStatusLayout.showContent()
 
         for (orderListResult in t) {
             sectionList.add(OrderListResultSectionEntity(orderListResult, null, true))
@@ -144,12 +164,34 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
         XavierViewUtils.finishRefreshLayoutAnim(refreshLayout)
         enableRefreshLayout()
 
+        multipleStatusLayout.showContent()
+
         if (sectionList.isEmpty()) {
-            multipleStatusLayout.showEmpty()
+            orderAdapter?.let {
+                if (!it.hasHeaderLayout()) {
+                    orderAdapter?.addHeaderView(getEmptyView())
+                }
+            }
+            presenter?.recommendGoods(rowsPage)
+        } else {
+            if (rowsList.isEmpty()) {
+                presenter?.recommendGoods(rowsPage)
+            } else {
+                message.toast()
+            }
         }
-        presenter?.recommendGoods(rowsPage)
     }
 
+    @SuppressLint("InflateParams")
+    private fun getEmptyView(): View {
+        val inflate = layoutInflater.inflate(R.layout.multip_default_empty_view, null)
+        inflate.findViewById<ImageView>(R.id.emptyImageView).setImageResource(R.drawable.empty_shop)
+        val emptyTextView = inflate.findViewById<TextView>(R.id.emptyTextView)
+        emptyTextView.text = param.minor
+        return inflate
+    }
+
+    @SuppressLint("InflateParams")
     override fun showRecommendGoods(commodityResult: CommodityResult) {
         XavierViewUtils.finishRefreshLayoutAnim(refreshLayout)
 
@@ -163,19 +205,26 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
         }
         recommendRecycle?.let { recycle ->
             if (commodityAdapter == null) {
-                recycle.layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
-                commodityAdapter = CommodityAdapter(rowsList)
-                recycle.adapter = commodityAdapter
-                commodityAdapter?.addHeaderView(getLabelView())
+                commodityAdapter =
+                    CommodityAdapter(R.layout.recycle_item_staggered_commodity, rowsList)
+                //commodityAdapter?.addHeaderView(getLabelView())
+                setCommodityAdapter(recycle)
             } else {
+                recycle.adapter ?: setCommodityAdapter(recycle)
                 commodityAdapter?.notifyDataSetChanged()
             }
         }
     }
 
+    private fun setCommodityAdapter(recycle: RecyclerView) {
+        XavierViewUtils.setStaggeredGridLayout(recycle)
+        recycle.adapter = commodityAdapter
+    }
+
     private fun addFooterView() {
         orderAdapter?.let {
             if (!it.hasFooterLayout()) {
+                orderAdapter?.addFooterView(getLabelView())
                 orderAdapter?.addFooterView(getRecommendRecycleView())
             }
         }
@@ -191,10 +240,11 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
     @SuppressLint("InflateParams")
     private fun getLabelView(): View {
         val inflate = layoutInflater.inflate(R.layout.include_label_start_view_end_text, null)
-        val labelConstraintLayout =
-            inflate.findViewById<ConstraintLayout>(R.id.labelConstraintLayout)
-        val verticalPadding = 12f.dp().toInt()
-        labelConstraintLayout.setPadding(0, verticalPadding, 0, verticalPadding)
+        inflate.findViewById<View>(R.id.labelView).background =
+            MaterialShapeDrawableUtils.getShapeDrawable(2f, R.color.main_orange)
+        inflate.findViewById<TextView>(R.id.labelText).text = "猜你喜欢"
+        val padding = 12f.dp().toInt()
+        inflate.setPadding(padding, padding, padding, padding)
         return inflate
     }
 
@@ -210,8 +260,8 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
         message.toast()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         clearPage()
     }
 
@@ -220,9 +270,15 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
 
         orderPage = 1
         sectionList.clear()
-        orderAdapter?.removeAllFooterView()
+        orderAdapter?.notifyDataSetChanged()
 
         rowsList.clear()
+        commodityAdapter?.notifyDataSetChanged()
+
+        orderAdapter?.removeAllHeaderView()
+        orderAdapter?.removeAllFooterView()
+        recommendRecycle = null
+
     }
 
     private fun enableRefreshLayout(enable: Boolean = true) {
@@ -294,7 +350,7 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
                         .create()
                     XavierOrderUtils.pointOrderAction(
                         singleStatus,
-                        item.shop?.shippingMethod ?: 0,
+                        item.shop.shippingMethod,
                         actionLayout
                     )
                 } else {

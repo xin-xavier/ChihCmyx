@@ -1,4 +1,4 @@
-package com.chih.mecm.cmyx.extend
+package com.chih.mecm.cmyx.utils.extend
 
 import android.view.View
 import android.view.View.*

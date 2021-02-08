@@ -1,7 +1,5 @@
 package com.chih.mecm.cmyx.app.api
 
-import com.chih.mecm.cmyx.extend.dp
-
 interface ConstantPool {
     companion object {
         const val DEBUG = true

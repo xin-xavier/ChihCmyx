@@ -1,4 +1,4 @@
-package com.chih.mecm.cmyx.extend
+package com.chih.mecm.cmyx.utils.extend
 
 import com.blankj.utilcode.util.ToastUtils
 

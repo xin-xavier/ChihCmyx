@@ -2,11 +2,9 @@ package com.chih.mecm.cmyx
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup.MarginLayoutParams
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.chih.mecm.cmyx.extend.dp
-import com.chih.mecm.cmyx.extend.setVisible
+import com.chih.mecm.cmyx.utils.extend.setVisible
 import kotlinx.android.synthetic.main.activity_temporary.*
 
 class TemporaryActivity : AppCompatActivity() {

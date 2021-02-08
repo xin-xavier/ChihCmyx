@@ -10,16 +10,15 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.adapter.banner.BannerImageAdapter
-import com.chih.mecm.cmyx.adapter.pager.CommodityAdapter
+import com.chih.mecm.cmyx.adapter.recycle.CommodityAdapter
 import com.chih.mecm.cmyx.bean.result.*
-import com.chih.mecm.cmyx.extend.setGone
-import com.chih.mecm.cmyx.extend.setVisible
-import com.chih.mecm.cmyx.extend.toast
+import com.chih.mecm.cmyx.utils.extend.setGone
+import com.chih.mecm.cmyx.utils.extend.setVisible
+import com.chih.mecm.cmyx.utils.extend.toast
 import com.chih.mecm.cmyx.order.OrderListActivity
 import com.chih.mecm.cmyx.utils.GlideEngine
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils
 import com.chih.mecm.cmyx.utils.XavierViewUtils
-import com.chih.mecm.cmyx.utils.divide.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_news.*
 import kotlinx.android.synthetic.main.fragment_top.*
 import timber.log.Timber
@@ -167,10 +166,8 @@ class TopFragment : TopContainerFragment() {
                 if (pagePosition == 0) "热门推荐" else "猜你喜欢"
             // 解决 NestedScrollView 嵌套 RecyclerView 滑动卡顿
             hotRecycle.isNestedScrollingEnabled = false
-            if (hotRecycle.itemDecorationCount == 0) {
-                hotRecycle.addItemDecoration(GridSpacingItemDecoration())
-            }
-            hotAdapter = CommodityAdapter(rowsList)
+            XavierViewUtils.setStaggeredGridLayout(hotRecycle)
+            hotAdapter = CommodityAdapter(R.layout.recycle_item_staggered_commodity, rowsList)
             hotRecycle.adapter = hotAdapter
             hotAdapter?.setOnItemClickListener { _, _, _ ->
                 intent(OrderListActivity::class.java)

@@ -15,12 +15,12 @@ open class LifeCycleFragment : Fragment {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Timber.d("${this.javaClass.simpleName} onAttach: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onAttach: Called")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.d("${this.javaClass.simpleName} onCreate: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onCreate: Called")
     }
 
     override fun onCreateView(
@@ -28,48 +28,53 @@ open class LifeCycleFragment : Fragment {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Timber.d("${this.javaClass.simpleName} onCreateView: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onCreateView: Called")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("${this.javaClass.simpleName} onViewCreated: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onViewCreated: Called")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Timber.d("${this.javaClass.simpleName} onActivityCreated: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onActivityCreated: Called")
     }
 
     override fun onStart() {
         super.onStart()
-        Timber.d("${this.javaClass.simpleName} onStart: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onStart: Called")
     }
 
     override fun onResume() {
         super.onResume()
-        Timber.d("${this.javaClass.simpleName} onResume: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onResume: Called")
     }
 
     override fun onPause() {
         super.onPause()
-        Timber.d("${this.javaClass.simpleName} onPause: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onPause: Called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onStop: Called")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Timber.d("${this.javaClass.simpleName} onDestroyView: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onDestroyView: Called")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("${this.javaClass.simpleName} onDestroy: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onDestroy: Called")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Timber.d("${this.javaClass.simpleName} onDetach: Called")
+        Timber.d("${javaClass.simpleName} --- ${hashCode()} onDetach: Called")
     }
 
 }

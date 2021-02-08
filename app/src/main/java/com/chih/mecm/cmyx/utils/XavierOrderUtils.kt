@@ -5,8 +5,8 @@ import android.view.Gravity
 import android.widget.Button
 import android.widget.LinearLayout
 import com.chih.mecm.cmyx.R
-import com.chih.mecm.cmyx.extend.dp
-import com.chih.mecm.cmyx.extend.value
+import com.chih.mecm.cmyx.utils.extend.dp
+import com.chih.mecm.cmyx.utils.extend.value
 
 object XavierOrderUtils {
 

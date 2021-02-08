@@ -3,9 +3,10 @@ package com.chih.mecm.cmyx.utils
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chih.mecm.cmyx.R
-import com.chih.mecm.cmyx.extend.dp
+import com.chih.mecm.cmyx.utils.extend.dp
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
@@ -75,9 +76,20 @@ object XavierViewUtils {
         }
     }
 
+    fun setMargins(view: View, left: Int, top: Int, right: Int, bottom: Int) {
+        val params = view.layoutParams as ViewGroup.MarginLayoutParams
+        params.setMargins(left, top, right, bottom)
+    }
+
     fun setMarginStart(view: View) {
         val params = view.layoutParams as ViewGroup.MarginLayoutParams
         params.marginStart = 12f.dp().toInt()
+    }
+
+    fun setStaggeredGridLayout(recycle: RecyclerView){
+        val smallSpace = 6.dp()
+        recycle.setPadding(smallSpace, 0, smallSpace, 0)
+        recycle.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
     }
 
 }

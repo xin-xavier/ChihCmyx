@@ -1,4 +1,4 @@
-package com.chih.mecm.cmyx.order.fragment
+package com.chih.mecm.cmyx.order
 
 import com.chih.mecm.cmyx.base.presentation.ViewPresentation
 import com.chih.mecm.cmyx.base.presenter.IBasePresenter

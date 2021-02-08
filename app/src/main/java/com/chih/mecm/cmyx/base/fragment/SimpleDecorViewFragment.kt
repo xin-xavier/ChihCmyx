@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.LayoutRes
 import com.blankj.utilcode.util.BarUtils
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.app.api.ConstantPool
 import com.chih.mecm.cmyx.base.fragment.helper.AppbarHelper
 import com.chih.mecm.cmyx.base.presentation.OnPrepareListener
-import com.chih.mecm.cmyx.extend.dp
+import com.chih.mecm.cmyx.utils.extend.dp
 
 abstract class SimpleDecorViewFragment : SimpleFragment, OnPrepareListener {
 

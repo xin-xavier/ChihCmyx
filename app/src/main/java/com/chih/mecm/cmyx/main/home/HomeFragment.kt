@@ -12,8 +12,8 @@ import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.BIG_SCALE
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.LITTLE_SCALE
 import com.chih.mecm.cmyx.base.fragment.BaseWithBarFragment
 import com.chih.mecm.cmyx.bean.result.TopClazzResult
-import com.chih.mecm.cmyx.extend.toast
-import com.chih.mecm.cmyx.extend.value
+import com.chih.mecm.cmyx.utils.extend.toast
+import com.chih.mecm.cmyx.utils.extend.value
 import com.chih.mecm.cmyx.main.home.top.TopContainerFragment
 import com.chih.mecm.cmyx.main.home.top.TopFragment
 import com.chih.mecm.cmyx.utils.MaterialShapeDrawableUtils

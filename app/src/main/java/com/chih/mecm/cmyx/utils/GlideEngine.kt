@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.IMAGE_SIZE_MULTIPLIER
-import com.chih.mecm.cmyx.extend.dp
+import com.chih.mecm.cmyx.utils.extend.dp
 
 
 object GlideEngine : ImageEngine {

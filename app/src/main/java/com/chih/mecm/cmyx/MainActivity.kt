@@ -120,9 +120,6 @@ class MainActivity : SimpleActivity() {
             }
         })
 
-        // 接口测试
-        //interfaceTest()
-
         // 启动服务
         val intent = Intent(this, ChatSocketService::class.java)
         startService(intent)
@@ -147,25 +144,6 @@ class MainActivity : SimpleActivity() {
 
         // 解绑广播
         receiver.unregisterReceiver(this)
-    }
-
-    private fun interfaceTest() {
-        RetrofitHelper.apiServer
-            .subClazz(1)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
-        RetrofitHelper.apiServer
-            .homeChoiceShop()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
-        val map = mapOf<String, Int>("cid" to 0, "pid" to 1, "page" to 1)
-        RetrofitHelper.apiServer
-            .clazzGoods(map)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
     }
 
     private inner class TabsPagerAdapter(fragmentActivity: FragmentActivity) :

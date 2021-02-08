@@ -41,7 +41,7 @@ data class OrderListResult(
     @SerializedName("status")
     val status: Int = 0,
     @SerializedName("order_total")
-    val orderTotal: Int = 0,
+    val orderTotal: Int = 0
 )
 
 data class OrderListResultSectionEntity(

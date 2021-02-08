@@ -32,6 +32,7 @@
         <item name="minHeight">48dip</item>
         <item name="maxHeight">48dip</item>
         <item name="indicatorName">BallPulseIndicator</item>
+        <item name="indicatorColor">@color/main_orange</item>
     </style>
 
     <style name="AVLoadingIndicatorView.Large">

@@ -1,11 +1,9 @@
-package com.chih.mecm.cmyx.extend
+package com.chih.mecm.cmyx.utils.extend
 
 import android.content.res.Resources
-import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import com.blankj.utilcode.util.ColorUtils
-import com.chih.mecm.cmyx.ChihApplication
 
 ///////////////////////////////////////////////////////////////////////////
 // Size 相关
@@ -15,6 +13,11 @@ import com.chih.mecm.cmyx.ChihApplication
 fun Float.dp(): Float {
     val scale = Resources.getSystem().displayMetrics.density
     return this * scale + 0.5f
+}
+
+fun Int.dp(): Int {
+    val scale = Resources.getSystem().displayMetrics.density
+    return (this * scale + 0.5f).toInt()
 }
 
 // Value of px to value of sp.
