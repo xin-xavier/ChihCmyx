@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.base.activity.SimpleWithBarActivity
 import com.chih.mecm.cmyx.bean.entity.TabEntity
-import com.chih.mecm.cmyx.order.fragment.OrderListFragment
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import kotlinx.android.synthetic.main.activity_order_list.*

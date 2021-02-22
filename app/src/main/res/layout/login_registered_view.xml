@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="473dp"
+    tools:layout_width="351dp">
+    <!--android:layout_width="351dp"-->
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/image_view"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/accountNumberView"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appLogo" />
+
+    <TextView
+        android:id="@+id/phoneNumberPrefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/_86"
+        android:textColor="@color/textColor"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/accountNumberView"
+        app:layout_constraintStart_toStartOf="@id/accountNumberView"
+        app:layout_constraintTop_toTopOf="@id/accountNumberView" />
+
+    <!--35.5 - 4 - 5 - 3.5  = 23-->
+
+    <com.chih.mecm.cmyx.widget.EditTextWithDel
+        android:id="@+id/inputPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="23dp"
+        android:background="@color/transparent"
+        android:hint="@string/please_enter_phone_number"
+        android:maxLength="11"
+        android:maxLines="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@color/textColor"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/accountNumberView"
+        app:layout_constraintEnd_toEndOf="@id/accountNumberView"
+        app:layout_constraintStart_toEndOf="@id/phoneNumberPrefix"
+        app:layout_constraintTop_toTopOf="@id/accountNumberView" />
+
+    <Button
+        android:id="@+id/nextStep"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="37.5dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="37.5dp"
+        android:text="@string/next_step"
+        android:textColor="@color/main_orange"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputPhoneNumber" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

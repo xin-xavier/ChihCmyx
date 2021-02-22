@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.blankj.utilcode.util.BarUtils
 import com.chih.mecm.cmyx.app.AppManager
-import com.chih.mecm.cmyx.app.login.LoginActivity
+import com.chih.mecm.cmyx.main.mine.login.LoginActivity
 import com.chih.mecm.cmyx.base.presentation.UIPresentation
 import com.jaeger.library.StatusBarUtil
 
@@ -55,8 +55,9 @@ abstract class SimpleFragment : LifeCycleFragment, UIPresentation {
     }
 
     /**
-     * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
+     * 是否实现沉浸式状态栏，当为 true 的时候执行 initImmersionBar()
      * Immersion bar enabled boolean.
+     * 默认为 false
      *
      * @return the boolean
      */

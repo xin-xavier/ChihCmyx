@@ -20,10 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ChihCmyx"
         tools:replace="android:theme">
-        <activity android:name=".order.OrderListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".commodity.CommodityDetailsActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".main.mine.login.NewUserRegistrationActivity"></activity>
+        <activity
+            android:name=".order.OrderListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".commodity.CommodityDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".app.APixelActivity"
             android:screenOrientation="portrait"
@@ -35,7 +38,7 @@
             android:name=".app.splash.GuideActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".app.login.LoginActivity"
+            android:name=".main.mine.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".app.splash.SplashActivity"

@@ -2,8 +2,6 @@ package com.chih.mecm.cmyx.app.api
 
 interface ConstantPool {
     companion object {
-        const val DEBUG = true
-
         // OkHttp 缓存路径
         const val OK_CACHE_DIR = "cache_dir"
 

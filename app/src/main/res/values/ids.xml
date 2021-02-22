@@ -10,6 +10,7 @@
     <item name="xavierToolbarTitle" type="id" />
     <item name="xavierNavMenu" type="id" />
     <item name="xavierUnreadNumber" type="id" />
+    <item name="xavierClose" type="id" />
 
     <item name="xavierToolbarBgView" type="id" />
     <item name="xavierSearchBoxBgView" type="id" />

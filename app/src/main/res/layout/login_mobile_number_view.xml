@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="473dp"
+    tools:layout_width="351dp">
+    <!--android:layout_width="351dp"-->
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/image_view"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/accountNumberView"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appLogo" />
+
+    <TextView
+        android:id="@+id/phoneNumberPrefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/_86"
+        android:textColor="@color/textColor"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/accountNumberView"
+        app:layout_constraintStart_toStartOf="@id/accountNumberView"
+        app:layout_constraintTop_toTopOf="@id/accountNumberView" />
+
+    <!--35.5 - 4 - 5 - 3.5  = 23-->
+
+    <com.chih.mecm.cmyx.widget.EditTextWithDel
+        android:id="@+id/inputPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="23dp"
+        android:textColor="@color/textColor"
+        android:background="@color/transparent"
+        android:hint="@string/please_enter_phone_number"
+        android:maxLength="11"
+        android:maxLines="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/accountNumberView"
+        app:layout_constraintEnd_toEndOf="@id/accountNumberView"
+        app:layout_constraintStart_toEndOf="@id/phoneNumberPrefix"
+        app:layout_constraintTop_toTopOf="@id/accountNumberView" />
+
+    <View
+        android:id="@+id/passwordView"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accountNumberView" />
+
+    <!--20 + 12.5 + 12.5 = 45-->
+
+    <ImageView
+        android:id="@+id/eyeBtn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:contentDescription="@string/image_view"
+        android:padding="12.5dp"
+        android:src="@mipmap/ic_eye_close"
+        app:layout_constraintBottom_toBottomOf="@id/passwordView"
+        app:layout_constraintStart_toStartOf="@id/passwordView"
+        app:layout_constraintTop_toTopOf="@id/passwordView" />
+
+    <TextView
+        android:id="@+id/forgotPasswordBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="@string/forgot_password"
+        android:textColor="@color/textColor"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/passwordView"
+        app:layout_constraintEnd_toEndOf="@id/passwordView"
+        app:layout_constraintTop_toTopOf="@id/passwordView"
+        tools:ignore="SmallSp" />
+
+    <!--23.5 - 12.5 = 21-->
+
+    <EditText
+        android:id="@+id/inputPassword"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="21dp"
+        android:autofillHints="@string/please_enter_password"
+        android:background="@color/transparent"
+        android:hint="@string/please_enter_password"
+        android:inputType="textPassword"
+        android:textColor="@color/textColor"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/passwordView"
+        app:layout_constraintEnd_toStartOf="@id/forgotPasswordBtn"
+        app:layout_constraintStart_toEndOf="@id/eyeBtn"
+        app:layout_constraintTop_toTopOf="@id/passwordView" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="37.5dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="37.5dp"
+        android:text="@string/login"
+        android:textColor="@color/main_orange"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordView" />
+
+    <TextView
+        android:id="@+id/toVerificationCodeLoginPageBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/sms_verification_code_login"
+        android:textColor="@color/grey_900_alpha_100"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:padding="@dimen/dp_10"
+        android:text="@string/logging_in_means_that_you_have_agreed_to_the_chengmeiyouxuan_privacy_policy"
+        android:textColor="@color/grey_900_alpha_100"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

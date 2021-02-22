@@ -1,5 +1,7 @@
 package com.chih.mecm.cmyx
 
+import java.util.*
+
 fun main() {
 
 /*    val strings = ArrayList<String>()
@@ -53,7 +55,7 @@ fun main() {
     mutableListIterator.set("three")
     println(numbers)*/
 
-    val numbers = listOf("one", "two", "three", "four")
+/*    val numbers = listOf("one", "two", "three", "four")
     val listIterator = numbers.listIterator()
     while (listIterator.hasNext()) listIterator.next()
     println("Iterating backwards:")
@@ -78,5 +80,12 @@ fun main() {
             mutableListIterator.next()
         }
     }
-    println(letters)
+    println(letters)*/
+
+
+    for(index in 0 until 100){
+        val uuid: UUID = UUID.randomUUID()
+        println(uuid.toString())
+    }
+
 }

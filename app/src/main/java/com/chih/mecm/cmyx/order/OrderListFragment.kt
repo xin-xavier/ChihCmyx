@@ -22,7 +22,6 @@ import com.chih.mecm.cmyx.bean.result.CommodityItem
 import com.chih.mecm.cmyx.bean.result.CommodityResult
 import com.chih.mecm.cmyx.bean.result.OrderListResult
 import com.chih.mecm.cmyx.bean.result.OrderListResultSectionEntity
-import com.chih.mecm.cmyx.order.OrderListContract
 import com.chih.mecm.cmyx.utils.extend.dp
 import com.chih.mecm.cmyx.utils.extend.setVisible
 import com.chih.mecm.cmyx.utils.extend.toast
@@ -144,10 +143,8 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
         for (orderListResult in t) {
             sectionList.add(OrderListResultSectionEntity(orderListResult, null, true))
             val goods = orderListResult.goods
-            if (!goods.isNullOrEmpty()) {
-                for (goodItem in goods) {
-                    sectionList.add(OrderListResultSectionEntity(orderListResult, goodItem, false))
-                }
+            for (goodItem in goods) {
+                sectionList.add(OrderListResultSectionEntity(orderListResult, goodItem, false))
             }
         }
         orderAdapter?.notifyDataSetChanged()
@@ -318,19 +315,19 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
                 MaterialShapeDrawableUtils.bottomShapeDrawable(4f, R.color.white)
             val layoutPosition = holder.layoutPosition
             val footer = layoutPosition == data.lastIndex || data[layoutPosition + 1].isHeader
-            item.goods?.let {
-                val rebateOrderMsg = it.rebateOrderMsg
-                val singleStatus = it.singleStatus
-                val num = it.num
+            item.goods?.let {goods ->
+                val rebateOrderMsg = goods.rebateOrderMsg
+                val singleStatus = goods.singleStatus
+                val num = goods.num
                 GlideEngine.assignResIdCircleCorner(
                     context,
-                    it.goodsImage,
+                    goods.goodsImage,
                     holder.getView(R.id.commodityImage)
                 )
-                holder.setText(R.id.commodityPrice, it.price)
-                    .setText(R.id.commodityName, it.goodsName)
+                holder.setText(R.id.commodityPrice, goods.price)
+                    .setText(R.id.commodityName, goods.goodsName)
                     .setText(R.id.commodityNumber, "X${num}")
-                    .setText(R.id.commoditySku, it.skuCondition)
+                    .setText(R.id.commoditySku, goods.skuCondition)
                     .setVisible(R.id.commodityCommission, !rebateOrderMsg.isNullOrEmpty())
                     .setText(R.id.commodityCommission, rebateOrderMsg ?: "")
                     .setText(
@@ -344,13 +341,12 @@ class OrderListFragment : BaseFragment<OrderListContract.Presenter<OrderListCont
                     val actionLayout = holder.getView<LinearLayout>(R.id.actionLayout)
                     SpanUtils.with(total)
                         .append("共计${num}件商品 合计：")
-                        .append("￥${it.realMoney}")
+                        .append("￥${goods.realMoney}")
                         .setFontSize(14, true)
                         .setForegroundColor(R.color.textColor.value())
                         .create()
                     XavierOrderUtils.pointOrderAction(
-                        singleStatus,
-                        item.shop.shippingMethod,
+                        item,
                         actionLayout
                     )
                 } else {

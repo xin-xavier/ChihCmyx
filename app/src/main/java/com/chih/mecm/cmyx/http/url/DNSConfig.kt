@@ -1,6 +1,6 @@
 package com.chih.mecm.cmyx.http.url
 
-import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.DEBUG
+import com.chih.mecm.cmyx.BuildConfig.DEBUG
 
 object DNSConfig {
 

@@ -2,14 +2,11 @@ package com.chih.mecm.cmyx.base.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View
 import com.chih.mecm.cmyx.R
 import com.chih.mecm.cmyx.app.AppManager
-import com.chih.mecm.cmyx.app.login.LoginActivity
 import com.chih.mecm.cmyx.base.presentation.UIPresentation
+import com.chih.mecm.cmyx.main.mine.login.LoginActivity
 import com.gyf.immersionbar.ImmersionBar
-import com.jaeger.library.StatusBarUtil
 
 abstract class SimpleActivity : LifeCycleActivity(),
     UIPresentation {
@@ -29,12 +26,25 @@ abstract class SimpleActivity : LifeCycleActivity(),
 
     // 初始化状态栏
     open fun withImmersionBar() {
-        immersionBar
-            .transparentStatusBar() //透明状态栏
-            .statusBarDarkFont(true) //状态栏字体是深色
-            .navigationBarColor(R.color.white) //导航栏颜色
-            .navigationBarDarkIcon(true) //导航栏图标是深色
-            .init() //通过上面配置后初始化后方可成功调用
+        if (immersionBarEnabled()) {
+            immersionBar
+                .transparentStatusBar() // 透明状态栏
+                .statusBarDarkFont(true) // 状态栏字体是深色
+                .navigationBarColor(R.color.white) // 导航栏颜色
+                .navigationBarDarkIcon(true) // 导航栏图标是深色
+                .init() // 通过上面配置后初始化后方可成功调用
+        }
+    }
+
+    /**
+     * 是否实现沉浸式状态栏，当为 true 的时候执行 withImmersionBar()
+     * Immersion bar enabled boolean.
+     * 默认为 true
+     *
+     * @return the boolean
+     */
+    open fun immersionBarEnabled(): Boolean {
+        return true
     }
 
     override fun onResume() {

@@ -49,6 +49,9 @@ class AppbarHelper : SimpleFragment {
                         navPopup.showPopupWindow(v)
                     }
                 }
+                else ->{
+
+                }
             }
         }
         /**

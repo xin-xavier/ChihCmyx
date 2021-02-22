@@ -160,4 +160,24 @@ ICP证合字B2-20070004号
     <string name="shopping">购物车</string>
     <string name="mine">我的</string>
     <string name="official">官方</string>
+    <string name="qq_login">QQ登录</string>
+
+    <string name="no_account_yet_immediately_registered">还没有账户? 马上注册</string>
+    <string name="_86">+86</string>
+    <string name="please_enter_password">请输入密码</string>
+    <string name="please_enter_phone_number">请输入手机号</string>
+    <string name="login">登录</string>
+    <string name="sms_verification_code_login">短信验证码登录</string>
+    <string name="logging_in_means_that_you_have_agreed_to_the_chengmeiyouxuan_privacy_policy">登录即代表您已同意《诚美优选隐私政策》</string>
+    <string name="forgot_password">忘记密码</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="enter_confirmation_code">输入验证码</string>
+    <string name="account_password_login">账户密码登录</string>
+    <string name="next_step">下一步</string>
+    <string name="we_will_send_the_verification_code_to_you_in_the_form_of_sMS_and_please_note_that_check">我们将以短信的形式将验证码发送给您，请注意查收</string>
+    <string name="please_enter_verification_code">请输入验证码</string>
+    <string name="please_set_login_password">请设置登录密码</string>
+    <string name="please_enter_6_20_characters">请输入6~20位字符</string>
+    <string name="password_description">密码由6~20位字母或数字组成，不能是10位以下的纯数字/字母，字母区分大小写</string>
+    <string name="determine">确定</string>
 </resources>

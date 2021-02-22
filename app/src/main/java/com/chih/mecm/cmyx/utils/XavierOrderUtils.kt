@@ -2,13 +2,15 @@ package com.chih.mecm.cmyx.utils
 
 import android.graphics.drawable.Drawable
 import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import com.chih.mecm.cmyx.R
+import com.chih.mecm.cmyx.bean.result.OrderListResultSectionEntity
 import com.chih.mecm.cmyx.utils.extend.dp
 import com.chih.mecm.cmyx.utils.extend.value
 
-object XavierOrderUtils {
+object XavierOrderUtils : View.OnClickListener {
 
     private val primaryColor = R.color.main_orange.value()
     private val secondaryColor = R.color.textColor.value()
@@ -76,10 +78,12 @@ object XavierOrderUtils {
         }
     }
 
-    fun pointOrderAction(status: Int, shippingMethod: Int, linearLayout: LinearLayout) {
-        when (status) {
+    fun pointOrderAction(entity: OrderListResultSectionEntity, linearLayout: LinearLayout) {
+        val shop = entity.shop
+        val shippingMethod = shop.shippingMethod
+        when (shop.status) {
             0 -> {
-                addAction(linearLayout, "去付款", "取消订单")
+                addAction(entity, linearLayout, "去付款", "取消订单")
             }
             2 -> {
                 val strings = arrayListOf<String>()
@@ -93,51 +97,94 @@ object XavierOrderUtils {
                 if (shippingMethod == 0) {
                     strings.add("确认收货")
                 }
-                addAction(linearLayout, *strings.toTypedArray())
+                addAction(entity, linearLayout, *strings.toTypedArray())
             }
             3 -> {
                 if (shippingMethod == 2) {
-                    addAction(linearLayout, "评价", "查看卡密", "删除订单")
+                    addAction(entity, linearLayout, "评价", "查看卡密", "删除订单")
                 } else {
-                    addAction(linearLayout, "评价", "删除订单")
+                    addAction(entity, linearLayout, "评价", "删除订单")
                 }
             }
             5 -> {
                 if (shippingMethod == 2) {
-                    addAction(linearLayout, "查看卡密", "删除订单")
+                    addAction(entity, linearLayout, "查看卡密", "删除订单")
                 } else {
-                    addAction(linearLayout, "删除订单")
+                    addAction(entity, linearLayout, "删除订单")
                 }
             }
             8 -> {
-                addAction(linearLayout, "查看卡密", "确认收货")
+                addAction(entity, linearLayout, "查看卡密", "确认收货")
             }
             else -> {
             }
         }
     }
 
-    private fun addAction(linearLayout: LinearLayout, vararg texts: String) {
+    private fun addAction(
+        entity: OrderListResultSectionEntity,
+        linearLayout: LinearLayout,
+        vararg texts: String
+    ) {
         linearLayout.removeAllViews()
         for (text in texts) {
             val context = linearLayout.context
             val button = Button(context)
+            button.id = View.generateViewId()
             button.gravity = Gravity.CENTER
-            button.setPadding(0,0,0,0)
+            button.setPadding(0, 0, 0, 0)
             button.text = text
             button.textSize = 12f
             val actionStyle = actionStyleMap.getOrElse(text) {
                 primaryStyle
             }
+            actionStyle.entity=entity
             button.setTextColor(actionStyle.textColor)
             button.background = actionStyle.drawable
             linearLayout.addView(button)
             button.layoutParams.width = 65f.dp().toInt()
             button.layoutParams.height = 22f.dp().toInt()
             XavierViewUtils.setMarginStart(button)
+            button.setOnClickListener(this)
         }
     }
 
-    data class OrderActionStyleEntity(val textColor: Int, val drawable: Drawable)
+    data class OrderActionStyleEntity(
+        val textColor: Int,
+        val drawable: Drawable,
+        var entity: OrderListResultSectionEntity? = null
+    )
+
+    override fun onClick(view: View?) {
+        view?.let { v ->
+            if (v is Button) {
+                val text = v.text.toString()
+                val actionStyle = actionStyleMap.getOrElse(text) {
+                    primaryStyle
+                }
+                val entity = actionStyle.entity
+                when (text) {
+                    "去付款" -> {
+                    }
+                    "提取卡密" -> {
+                    }
+                    "确认收货" -> {
+                    }
+                    "查看卡密" -> {
+                    }
+                    "评价" -> {
+                    }
+                    "取消订单" -> {
+                    }
+                    "查看物流" -> {
+                    }
+                    "删除订单" -> {
+                    }
+                    else -> {
+                    }
+                }
+            }
+        }
+    }
 
 }

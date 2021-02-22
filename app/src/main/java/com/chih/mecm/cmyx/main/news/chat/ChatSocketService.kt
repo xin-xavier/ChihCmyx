@@ -97,7 +97,7 @@ class ChatSocketService : Service() {
                 PendingIntent.getActivity(this, 0, notificationIntent, 0)
             }
         when {
-            android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O -> { // 8.0 及以上
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> { // 8.0 及以上
                 val notification: Notification = Notification.Builder(this, DEFAULT)
                     .setContentTitle(getText(R.string.notification_title))
                     .setContentText(getText(R.string.notification_message))
@@ -108,7 +108,7 @@ class ChatSocketService : Service() {
                 // Notification ID cannot be 0.
                 startForeground(1, notification)
             }
-            android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N -> { // 7.0 及以上
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> { // 7.0 及以上
                 //Android7.0以上app启动后通知栏会出现一条"正在运行"的通知
                 startForeground(1, Notification())
             }

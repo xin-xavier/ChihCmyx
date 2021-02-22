@@ -40,6 +40,18 @@ object MaterialShapeDrawableUtils {
             }
     }
 
+    fun rightShapeDrawable(cornerSize: Float, @ColorRes color: Int): MaterialShapeDrawable {
+        val shapePathModel = ShapeAppearanceModel.builder()
+            .setTopRightCorner(CornerFamily.ROUNDED, cornerSize.dp())
+            .setBottomRightCorner(CornerFamily.ROUNDED, cornerSize.dp())
+            .build()
+        return MaterialShapeDrawable(shapePathModel)
+            .apply {
+                paintStyle = Paint.Style.FILL
+                setTint(color.value())
+            }
+    }
+
     fun bottomShapeDrawable(cornerSize: Float, @ColorRes color: Int): MaterialShapeDrawable {
         val shapePathModel = ShapeAppearanceModel.builder()
             .setBottomLeftCorner(CornerFamily.ROUNDED, cornerSize.dp())

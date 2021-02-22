@@ -1,4 +1,4 @@
-package com.chih.mecm.cmyx.http.server
+package com.chih.mecm.cmyx.http
 
 import com.chih.mecm.cmyx.bean.BaseResult
 import com.chih.mecm.cmyx.bean.EmptyBean
@@ -76,5 +76,36 @@ interface ApiServer {
     @POST("v3/home/recommend")
     @FormUrlEncoded
     fun recommendGoods(@Field("page") page: Int): Observable<BaseResult<CommodityResult>>
+
+    // 注册
+    @FormUrlEncoded
+    @POST("v3/login/register")
+    fun register(@FieldMap map: Map<String, Any>): Observable<BaseResult<LoginResult>>
+
+    // 发送验证码
+    @FormUrlEncoded
+    @POST("v3/login/sendSms")
+    fun sendSms(@FieldMap map: Map<String, Any>): Observable<BaseResult<EmptyBean>>
+
+    // 手机号登录
+    @POST("v3/login/phoneLogin")
+    @FormUrlEncoded
+    fun phoneLogin(@FieldMap map: Map<String, Any>): Observable<BaseResult<LoginResult>>
+
+    // 验证码登录
+    @POST("v3/login/phoneLogin")
+    @FormUrlEncoded
+    fun phoneVerificationCodeLogin(@FieldMap map: Map<String, Any>): Observable<BaseResult<LoginResult>>
+
+    // 第三方登陆
+    @POST("v3/login/authLogin")
+    @FormUrlEncoded
+    fun authLogin(@FieldMap map: Map<String, Any>): Observable<BaseResult<LoginResult>>
+
+    // 第三方登陆
+    @POST("v3/login/bind")
+    @FormUrlEncoded
+    fun authLoginBindPhone(@FieldMap map: Map<String, Any>): Observable<BaseResult<LoginResult>>
+
 
 }

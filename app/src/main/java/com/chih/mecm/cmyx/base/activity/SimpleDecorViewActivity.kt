@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.FragmentTransaction
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.SizeUtils
@@ -55,6 +56,13 @@ abstract class SimpleDecorViewActivity : SimpleActivity(), OnPrepareListener {
             )
         beginTransaction.replace(R.id.xavierToolbarLayoutContent, appbarHelper)
         beginTransaction.commit()
+    }
+
+    override fun setContentView(@LayoutRes layoutResID: Int) {
+        //  added the sub-activity layout id in parentLinearLayout
+        inflater.inflate(layoutResID, parentLinearLayout, true)
+        withImmersionBar()
+        ui()
     }
 
     open fun beforeLayoutRes(): Int = R.layout.xavier_decor_view

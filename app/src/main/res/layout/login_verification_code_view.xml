@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="473dp"
+    tools:layout_width="351dp">
+    <!--android:layout_width="351dp"-->
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/image_view"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/accountNumberView"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appLogo" />
+
+    <TextView
+        android:id="@+id/phoneNumberPrefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/_86"
+        android:textColor="@color/textColor"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/accountNumberView"
+        app:layout_constraintStart_toStartOf="@id/accountNumberView"
+        app:layout_constraintTop_toTopOf="@id/accountNumberView" />
+
+    <!--35.5 - 4 - 5 - 3.5  = 23-->
+
+    <com.chih.mecm.cmyx.widget.EditTextWithDel
+        android:id="@+id/inputPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="23dp"
+        android:background="@color/transparent"
+        android:hint="@string/please_enter_phone_number"
+        android:maxLength="11"
+        android:textColor="@color/textColor"
+        android:maxLines="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/accountNumberView"
+        app:layout_constraintEnd_toEndOf="@id/accountNumberView"
+        app:layout_constraintStart_toEndOf="@id/phoneNumberPrefix"
+        app:layout_constraintTop_toTopOf="@id/accountNumberView" />
+
+    <View
+        android:id="@+id/verificationCodeView"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accountNumberView" />
+
+    <Button
+        android:id="@+id/getVerificationCodeBtn"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:background="@color/grey_900_alpha_100"
+        style="@style/ButtonEliminatePaddingStyle"
+        android:text="@string/get_verification_code"
+        android:textColor="@color/main_orange"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/verificationCodeView"
+        app:layout_constraintEnd_toEndOf="@id/verificationCodeView"
+        app:layout_constraintTop_toTopOf="@id/verificationCodeView"
+        tools:ignore="SmallSp" />
+
+    <EditText
+        android:id="@+id/inputVerificationCode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autofillHints="@string/enter_confirmation_code"
+        android:background="@color/transparent"
+        android:hint="@string/enter_confirmation_code"
+        android:inputType="textPassword"
+        android:maxLength="4"
+        android:maxLines="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@color/textColor"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/getVerificationCodeBtn"
+        app:layout_constraintEnd_toStartOf="@id/getVerificationCodeBtn"
+        app:layout_constraintStart_toStartOf="@id/verificationCodeView"
+        app:layout_constraintTop_toTopOf="@id/getVerificationCodeBtn" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="37.5dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="37.5dp"
+        android:text="@string/login"
+        android:textColor="@color/main_orange"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/verificationCodeView" />
+
+    <TextView
+        android:id="@+id/toAccountPasswordPageBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/account_password_login"
+        android:textColor="@color/grey_900_alpha_100"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:padding="@dimen/dp_10"
+        android:text="@string/logging_in_means_that_you_have_agreed_to_the_chengmeiyouxuan_privacy_policy"
+        android:textColor="@color/grey_900_alpha_100"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

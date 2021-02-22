@@ -18,6 +18,7 @@ import com.chih.mecm.cmyx.bean.result.NewsChatResult
 import com.chih.mecm.cmyx.http.client.RetrofitHelper
 import com.chih.mecm.cmyx.http.observer.HttpDefaultObserver
 import com.chih.mecm.cmyx.main.home.HomeFragment
+import com.chih.mecm.cmyx.main.mine.MineFragment
 import com.chih.mecm.cmyx.main.news.NewsFragment
 import com.chih.mecm.cmyx.main.news.chat.ChatSocketService
 import com.flyco.tablayout.listener.CustomTabEntity
@@ -161,7 +162,7 @@ class MainActivity : SimpleActivity() {
                     TemporaryFragment.newInstance()
                 }
                 3 -> {
-                    TemporaryFragment.newInstance()
+                    MineFragment.newInstance()
                 }
                 else -> {
                     TemporaryFragment.newInstance()

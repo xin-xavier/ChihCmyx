@@ -11,7 +11,7 @@ data class OrderListResult(
     @SerializedName("mid")
     val mid: Int = 0,
     @SerializedName("goods")
-    val goods: List<OrderGoodsItem>?,
+    val goods: MutableList<OrderGoodsItem>,
     @SerializedName("discount")
     val discount: String = "",
     @SerializedName("remark")
@@ -46,5 +46,6 @@ data class OrderListResult(
 
 data class OrderListResultSectionEntity(
     val shop: OrderListResult,
-    val goods: OrderGoodsItem?, override val isHeader: Boolean
+    val goods: OrderGoodsItem?,
+    override val isHeader: Boolean
 ) : SectionEntity

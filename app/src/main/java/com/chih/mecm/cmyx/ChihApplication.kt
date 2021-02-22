@@ -9,7 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import com.blankj.utilcode.util.SPStaticUtils
 import com.chih.mecm.cmyx.app.AppManager
-import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.DEBUG
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.EASY_CACHED_EXECUTOR_BUILDER_NAME
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.EASY_FIXED_EXECUTOR_BUILDER_NAME
 import com.chih.mecm.cmyx.app.api.ConstantPool.Companion.EASY_FIXED_EXECUTOR_BUILDER_SIZE
@@ -47,7 +46,7 @@ class ChihApplication : Application() {
 
         RxCache.init(this)
         RxCache.Builder()
-            .setDebug(DEBUG)   //开启debug，开启后会打印缓存相关日志，默认为true
+            .setDebug(BuildConfig.DEBUG)   //开启debug，开启后会打印缓存相关日志，默认为true
             .setConverter(GsonConverter<Any>())  //设置转换方式，默认为Gson转换
             .setCacheMode(CacheMode.BOTH)   //设置缓存模式，默认为二级缓存
             .setMemoryCacheSizeByMB(50)   //设置内存缓存的大小，单位是MB
